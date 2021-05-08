@@ -1,0 +1,49 @@
+.nav-btn {
+	position: fixed;
+	z-index: 999;
+	top: 0.5rem;
+	right: 0.5rem;
+}
+
+nav {
+	position: fixed;
+	left: 0;
+	z-index: -1;
+	width: 100vw;
+	height: 100vh;
+	background: white;
+	padding: 7rem 2rem 2rem;
+
+	opacity: 0;
+	top: 2rem;
+	transition: opacity $transition-default, top $transition-default;
+
+	&.open {
+		opacity: 1;
+		top: 0;
+		z-index: 998;
+
+		a {
+			cursor: pointer;
+		}
+	}
+
+	li {
+		font-size: 1.8rem;
+		margin-bottom: 2rem;
+
+		&:first-child {
+			margin-bottom: 3.5rem;
+		}
+		img {
+			height: 3rem;
+		}
+		a {
+			border: none;
+
+			&:hover {
+				border: none;
+			}
+		}
+	}
+}

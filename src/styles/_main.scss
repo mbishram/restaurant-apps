@@ -1,0 +1,26 @@
+*:focus-visible {
+	outline: 3px solid $color-secondary;
+	outline-offset: 0.3rem;
+}
+
+html {
+	color: $color-dark;
+	font-size: 14px;
+	font-family: Manrope, sans-serif;
+	background: white;
+}
+
+body {
+	min-height: 100vh;
+	z-index: 1;
+}
+
+a {
+	border-bottom: 1px solid $color-gray-3;
+	transition: color $transition-default, border-bottom $transition-default;
+
+	&:hover {
+		color: $color-secondary;
+		border-bottom: 1px solid $color-secondary;
+	}
+}

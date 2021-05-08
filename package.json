@@ -15,6 +15,7 @@
 		"@babel/core": "^7.10.5",
 		"@babel/preset-env": "^7.10.4",
 		"babel-loader": "^8.1.0",
+		"clean-webpack-plugin": "^4.0.0-alpha.0",
 		"copy-webpack-plugin": "^6.0.3",
 		"css-loader": "^3.6.0",
 		"eslint": "^7.4.0",
@@ -28,6 +29,8 @@
 		"karma-jasmine": "^3.3.1",
 		"karma-sourcemap-loader": "^0.3.7",
 		"karma-webpack": "^4.0.2",
+		"mini-css-extract-plugin": "^1.6.0",
+		"prettier": "^2.2.1",
 		"sass": "^1.32.12",
 		"sass-loader": "^11.0.1",
 		"style-loader": "^1.2.1",
@@ -39,8 +42,9 @@
 	},
 	"dependencies": {
 		"@fontsource/manrope": "^4.2.2",
+		"bootstrap-icons": "^1.4.1",
 		"destyle.css": "^2.0.2",
-		"prettier": "^2.2.1",
+		"jquery": "^3.6.0",
 		"regenerator-runtime": "^0.13.5",
 		"yarn": "^1.22.10"
 	},

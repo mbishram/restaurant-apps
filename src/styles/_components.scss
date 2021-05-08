@@ -1,0 +1,26 @@
+.btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 3rem;
+	min-width: 3rem;
+	padding: 0.5rem;
+}
+
+.btn-icon {
+	font-size: 2.5rem;
+	height: 4rem;
+	width: 4rem;
+}
+
+.btn-primary {
+	color: $color-primary;
+}
+
+.btn-secondary {
+	color: $color-secondary;
+}
+
+.color-dark {
+	color: $color-dark;
+}
