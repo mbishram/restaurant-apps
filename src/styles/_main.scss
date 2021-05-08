@@ -1,6 +1,5 @@
 *:focus-visible {
 	outline: 3px solid $color-secondary;
-	outline-offset: 0.3rem;
 }
 
 html {
@@ -23,4 +22,12 @@ a {
 		color: $color-secondary;
 		border-bottom: 1px solid $color-secondary;
 	}
+}
+
+p {
+	line-height: $line-height;
+}
+
+h2 {
+	line-height: $line-height;
 }

@@ -1,26 +1,85 @@
+// Button
 .btn {
-	display: flex;
+	display: inline-flex;
+	width: 100%;
 	align-items: center;
 	justify-content: center;
 	min-height: 3rem;
 	min-width: 3rem;
-	padding: 0.5rem;
+	border-radius: $border-rad-sm;
+	border: none;
+	padding: 0.5rem 2rem;
+	transition: background-color $transition-default;
 }
 
 .btn-icon {
 	font-size: 2.5rem;
+	padding: 0.5rem;
 	height: 4rem;
 	width: 4rem;
 }
 
 .btn-primary {
-	color: $color-primary;
+	color: $color-light;
+	background: $color-primary;
+
+	&:hover {
+		background: $color-primary-light;
+		color: $color-light;
+	}
 }
 
 .btn-secondary {
+	color: $color-light;
+	background: $color-secondary;
+
+	&:hover {
+		background: $color-secondary-light;
+		color: $color-light;
+	}
+}
+
+// Typography
+.text-lg {
+	font-size: $font-lg;
+}
+
+// Text Color
+.text-dark {
+	color: $color-dark;
+}
+
+.text-primary {
+	color: $color-primary;
+}
+
+.text-secondary {
 	color: $color-secondary;
 }
 
-.color-dark {
-	color: $color-dark;
+// Shadow
+.shadow {
+	box-shadow: $shadow;
+}
+
+// Components
+.reader-focus {
+	width: unset;
+	background: white;
+	position: fixed;
+	left: 1rem;
+	border: none;
+
+	transition: top $transition-default, opacity $transition-default;
+	top: -3rem;
+	opacity: 0;
+
+	&:focus {
+		top: 1rem;
+		opacity: 1;
+	}
+}
+
+.container {
+	padding: 0 1rem;
 }

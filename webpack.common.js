@@ -26,6 +26,19 @@ module.exports = {
 				],
 			},
 			{
+				test: /\.(png|jpe?g|gif)$/i,
+				use: [
+					{
+						loader: "file-loader",
+						options: {
+							name: "[name].[ext]",
+							outputPath: "images/",
+							esModule: false,
+						},
+					},
+				],
+			},
+			{
 				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
 				use: [
 					{
@@ -48,8 +61,8 @@ module.exports = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{
-					from: path.resolve(__dirname, "src/public/"),
-					to: path.resolve(__dirname, "dist/"),
+					from: path.resolve(__dirname, "src/public/copy"),
+					to: path.resolve(__dirname, "dist/images"),
 				},
 			],
 		}),
@@ -57,7 +70,7 @@ module.exports = {
 			$: "jquery",
 		}),
 		new MiniCssExtractPlugin({
-			filename: "[name].css",
+			filename: "index.css",
 		}),
 		new CleanWebpackPlugin(),
 	],

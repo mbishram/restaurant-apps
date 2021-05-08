@@ -6,7 +6,7 @@ navButton.click(() => {
 	// Setting up button
 	navButtonIcon.toggleClass("bi-x");
 	navButtonIcon.toggleClass("bi-list");
-	navButtonIcon.toggleClass("color-dark");
+	navButtonIcon.toggleClass("text-dark");
 
 	// Handle the nav
 	nav.toggleClass("open");

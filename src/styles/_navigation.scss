@@ -16,7 +16,8 @@ nav {
 
 	opacity: 0;
 	top: 2rem;
-	transition: opacity $transition-default, top $transition-default;
+	transition: opacity $transition-default, top $transition-default,
+		z-index $transition-default;
 
 	&.open {
 		opacity: 1;
