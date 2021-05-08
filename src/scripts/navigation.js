@@ -12,4 +12,18 @@ $(() => {
 		// Handle the nav
 		nav.toggleClass("open");
 	});
+
+	// // Make nav button right align with the container
+	// const containerMargin = parseInt($(".container").css("marginLeft"));
+	//
+	// // Initial call
+	// const handleFixedMargin = (margin) => {
+	// 	navButton.css("margin-right", margin);
+	// };
+	// handleFixedMargin(containerMargin);
+	// // Set it when the screen size changes
+	// $(window).resize(() => {
+	// 	const containerMargin = parseInt($(".container").css("marginLeft"));
+	// 	handleFixedMargin(containerMargin);
+	// });
 });

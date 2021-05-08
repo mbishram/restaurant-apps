@@ -1,3 +1,6 @@
+// Root
+$root-size: 14;
+
 // Colors
 $color-primary: #0ac278;
 $color-primary-light: #47cc97;
@@ -26,7 +29,11 @@ $border-rad-sm: 0.5rem;
 $border-rad: 1rem;
 
 // Shadow
-$shadow: 0.3rem 0.3rem 0.5rem rgba(0, 0, 0, 0.25);
+$shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.25);
+
+// Breakpoints
+$screen-sm: 365px;
+$break-sm: $screen-sm + $root-size * 2;
 
 // General
 $hover-opacity: 0.7;
