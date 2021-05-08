@@ -1,0 +1,41 @@
+#restaurant {
+	padding: 3rem 0;
+
+	h2 {
+		padding: 0 1rem 2rem;
+	}
+
+	#list-restaurant {
+		display: grid;
+		gap: 2rem;
+
+		.restaurant-image {
+			width: 100%;
+			height: 20rem;
+			background-size: cover;
+			background-position: center;
+			border-radius: $border-rad;
+		}
+
+		section {
+			position: relative;
+			background: white;
+			padding: 1rem;
+			top: -2rem;
+
+			h3 {
+				margin-bottom: 0.5rem;
+			}
+
+			p:last-child {
+				margin-top: 0.8rem;
+			}
+
+			i {
+				border-left: 1px solid $color-gray-3;
+				margin-left: 0.4rem;
+				padding-left: 0.4rem;
+			}
+		}
+	}
+}
