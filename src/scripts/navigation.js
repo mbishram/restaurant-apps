@@ -40,6 +40,7 @@ $(() => {
 
 	const skipMain = $("#skip-main");
 	const skipRestaurant = $("#skip-restaurant");
+	const skipCTA = $("#skip-cta");
 	const containerMargin = parseInt($(".container").css("marginLeft"));
 
 	// Make nav and skip to content to align with the container
@@ -52,11 +53,13 @@ $(() => {
 			nav.css("margin-right", margin);
 			skipMain.css("margin-left", margin);
 			skipRestaurant.css("margin-left", margin);
+			skipCTA.css("margin-left", margin);
 		} else {
 			navButton.css("margin-right", "unset");
 			nav.css("margin-right", "unset");
 			skipMain.css("margin-left", "unset");
 			skipRestaurant.css("margin-left", "unset");
+			skipCTA.css("margin-left", "unset");
 		}
 	};
 	// Initial call

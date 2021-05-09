@@ -34,4 +34,8 @@ p {
 
 h2 {
 	line-height: $line-height;
+
+	&:focus {
+		outline: 0;
+	}
 }

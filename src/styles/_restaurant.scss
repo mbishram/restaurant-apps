@@ -4,13 +4,10 @@
 	h2 {
 		padding: 0 1rem 0;
 		margin-bottom: 2rem;
+		max-width: 15rem;
 
 		@media only screen and (min-width: $screen-sm) {
 			padding: 0;
-		}
-
-		&:focus-visible {
-			outline: 0;
 		}
 	}
 
