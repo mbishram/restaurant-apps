@@ -43,4 +43,9 @@
 		min-width: $screen-md;
 		max-width: $screen-md-max;
 	}
+
+	@media only screen and (min-width: $screen-lg) {
+		min-width: $screen-lg;
+		max-width: $screen-lg-max;
+	}
 }
