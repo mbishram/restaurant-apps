@@ -54,13 +54,45 @@ $(() => {
 		// Initial height minus description section top
 		article.height(article.outerHeight() - articleDescTop);
 	};
-	// Initial call
+	// Make the article section stretch till the end
+	const setArticleSectionHeight = (list) => {
+		const article = list.find("article");
+		const articleSection = article.find("section");
+		const articleImgHeight = article
+			.find(".restaurant-image")
+			.outerHeight();
+		const articleDescTop = Math.abs(
+			parseInt(article.find("section").css("top"))
+		);
+
+		// Article section height = list height - article img height - article top
+		const articleSectionHeight =
+			list.outerHeight() - (articleImgHeight - articleDescTop);
+
+		articleSection.height(articleSectionHeight - articleDescTop);
+	};
+
 	const handleArticleHeight = () => {
-		const restaurantArticle = $("#list-restaurant article");
-		restaurantArticle.each((_, element) => {
+		const restaurantArticles = $("#list-restaurant article");
+		// Reset all of the article sections height
+		restaurantArticles.each((_, element) => {
+			const articleSection = $(element).find("section");
+			articleSection.height("unset");
+		});
+
+		// Set article height
+		restaurantArticles.each((_, element) => {
 			setArticleHeight($(element));
 		});
+
+		// Set article section height
+		const restaurantLists = $("#list-restaurant li");
+		restaurantLists.each((_, element) => {
+			setArticleSectionHeight($(element));
+		});
 	};
+
+	// Initial call
 	handleArticleHeight();
 	// Set it when the screen size changes
 	$(window).resize(handleArticleHeight);

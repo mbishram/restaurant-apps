@@ -38,13 +38,12 @@ $(() => {
 		event.stopPropagation();
 	});
 
-	// Make nav and skip to content to align with the container
-	// on tablet devices an up
 	const skipMain = $("#skip-main");
 	const skipRestaurant = $("#skip-restaurant");
 	const containerMargin = parseInt($(".container").css("marginLeft"));
 
-	// Initial call
+	// Make nav and skip to content to align with the container
+	// on tablet devices an up
 	const handleFixedMargin = (margin) => {
 		// Only apply it on tablet and up
 		const mediaTablet = matchMedia("only screen and (min-width: 768px)");
@@ -53,8 +52,14 @@ $(() => {
 			nav.css("margin-right", margin);
 			skipMain.css("margin-left", margin);
 			skipRestaurant.css("margin-left", margin);
+		} else {
+			navButton.css("margin-right", "unset");
+			nav.css("margin-right", "unset");
+			skipMain.css("margin-left", "unset");
+			skipRestaurant.css("margin-left", "unset");
 		}
 	};
+	// Initial call
 	handleFixedMargin(containerMargin);
 	// Set it when the screen size changes
 	$(window).resize(() => {

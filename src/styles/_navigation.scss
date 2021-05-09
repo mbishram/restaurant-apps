@@ -21,8 +21,9 @@ nav {
 		z-index $transition-default;
 
 	@media only screen and (min-width: $screen-md) {
-		width: 20rem;
-		height: 31rem;
+		padding: 5rem 2rem 2rem;
+		width: 18rem;
+		height: 27.5rem;
 		border: 1px solid $color-gray-3;
 		border-radius: $border-rad;
 		right: 0.5rem;

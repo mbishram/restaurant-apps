@@ -11,7 +11,11 @@
 
 	#list-restaurant {
 		display: grid;
-		gap: 2rem;
+		gap: 1.5rem;
+
+		@media only screen and (min-width: $screen-md) {
+			grid-template-columns: repeat(2, 1fr);
+		}
 
 		.restaurant-image {
 			width: 100%;

@@ -40,6 +40,7 @@
 	}
 
 	@media only screen and (min-width: $screen-md) {
-		max-width: $screen-md;
+		min-width: $screen-md;
+		max-width: $screen-md-max;
 	}
 }
