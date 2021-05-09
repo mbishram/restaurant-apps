@@ -10,6 +10,15 @@
 	border: none;
 	padding: 0.5rem 2rem;
 	transition: background-color $transition-default;
+	font-weight: bold;
+
+	&:hover {
+		border: none;
+	}
+
+	@media only screen and (min-width: $screen-md) {
+		width: unset;
+	}
 }
 
 .btn-icon {

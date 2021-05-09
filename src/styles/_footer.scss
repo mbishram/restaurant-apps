@@ -1,7 +1,7 @@
 footer p {
 	padding: 0 1rem 1rem;
 
-	@media only screen and (min-width: $break-sm) {
+	@media only screen and (min-width: $screen-sm) {
 		padding: 0 0 1rem;
 	}
 }

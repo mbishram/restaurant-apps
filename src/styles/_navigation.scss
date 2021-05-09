@@ -7,17 +7,26 @@
 
 nav {
 	position: fixed;
-	left: 0;
+	right: 0;
 	z-index: -1;
 	width: 100vw;
 	height: 100vh;
 	background: white;
 	padding: 7rem 2rem 2rem;
+	box-shadow: $shadow;
 
 	opacity: 0;
 	top: 2rem;
 	transition: opacity $transition-default, top $transition-default,
 		z-index $transition-default;
+
+	@media only screen and (min-width: $screen-md) {
+		width: 20rem;
+		height: 31rem;
+		border: 1px solid $color-gray-3;
+		border-radius: $border-rad;
+		right: 0.5rem;
+	}
 
 	&.open {
 		opacity: 1;
@@ -26,6 +35,10 @@ nav {
 
 		a {
 			cursor: pointer;
+		}
+
+		@media only screen and (min-width: $screen-md) {
+			top: 0.5rem;
 		}
 	}
 

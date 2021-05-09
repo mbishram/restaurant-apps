@@ -21,9 +21,5 @@
 
 	.container {
 		padding: 0 1rem;
-
-		@media only screen and (min-width: $break-sm) {
-			padding: 0;
-		}
 	}
 }
