@@ -15,11 +15,11 @@ $color-light: #e6e8e8;
 $transition-default: 300ms ease;
 
 // Font Sizes
-$font-lg: 2rem;
-$font-md: 1.5rem;
+$font-lg: 2.2rem;
+$font-md: 1.6rem;
 
 // Text Spacing
-$line-height: 1.4em;
+$line-height: 1.3em;
 
 // Border Radius
 $border-rad-sm: 8px;
@@ -36,3 +36,4 @@ $screen-lg: 1182px;
 
 // General
 $hover-opacity: 0.7;
+$img-darken: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
