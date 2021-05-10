@@ -21,7 +21,7 @@ $(() => {
                     aria-label="deksripsi ${restaurant.name}"
                 >
                     <h3 id="restaurant-name-${restaurant.id}" class="text-md">
-                        ${restaurant.name}
+                        <a href="#" class="no-underline">${restaurant.name}</a>
                     </h3>
                     <p
                         class="text-gray-2"

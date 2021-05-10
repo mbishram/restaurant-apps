@@ -1,5 +1,5 @@
 #hero {
-	padding-top: 4rem;
+	padding-top: 5rem;
 
 	.hero-img {
 		width: 100%;
@@ -22,8 +22,19 @@
 			bottom: -1.5rem;
 		}
 
-		h2 {
-			max-width: 28rem;
+		.description {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1rem;
+			align-items: flex-end;
+
+			@media only screen and (min-width: $screen-md) {
+				grid-template-columns: auto 1fr;
+			}
+
+			h2 {
+				max-width: 27rem;
+			}
 		}
 	}
 }

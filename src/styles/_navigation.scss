@@ -21,9 +21,9 @@ nav {
 		z-index $transition-default;
 
 	@media only screen and (min-width: $screen-md) {
-		padding: 5rem 2rem 2rem;
+		padding: 5rem 2rem 4rem;
 		width: 18rem;
-		height: 27.5rem;
+		height: unset;
 		border: 1px solid $color-gray-3;
 		border-radius: $border-rad;
 		right: 0.5rem;
@@ -45,7 +45,7 @@ nav {
 
 	li {
 		font-size: 1.8rem;
-		margin-bottom: 2rem;
+		margin-bottom: 1.5rem;
 
 		&:first-child {
 			margin-bottom: 3.5rem;
@@ -54,6 +54,9 @@ nav {
 			height: 3rem;
 		}
 		a {
+			display: inline-flex;
+			align-items: center;
+			min-height: 3rem;
 			border: none;
 
 			&:hover {

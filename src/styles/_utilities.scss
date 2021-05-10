@@ -88,6 +88,15 @@
 	box-shadow: $shadow;
 }
 
+// Links
+.no-underline {
+	border: none;
+
+	&:hover {
+		border: none;
+	}
+}
+
 .card {
 	border-radius: $border-rad;
 	box-shadow: $shadow;
