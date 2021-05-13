@@ -8,14 +8,11 @@ $(() => {
 		const restaurantElement = `
 	    <li>
             <article aria-labelledby="restaurant-name-${restaurant.id}">
-                <div
-                    class="restaurant-image"
-                    role="img"
-                    aria-label="Foto ${restaurant.name}"
-                    style="
-                        background-image: url(${restaurant.pictureId});
-                    "
-                ></div>
+            	<img 
+            		class="restaurant-image" 
+            		src=${restaurant.pictureId}
+            		alt="Foto ${restaurant.name}"
+            	>
                 <section
                     class="card"
                     aria-label="deksripsi ${restaurant.name}"
@@ -93,7 +90,9 @@ $(() => {
 	};
 
 	// Initial call
-	handleArticleHeight();
+	// I'm using set timeout here because
+	// outerHeight usually doesn't load without it
+	setTimeout(handleArticleHeight, 1);
 	// Set it when the screen size changes
 	$(window).resize(handleArticleHeight);
 });
