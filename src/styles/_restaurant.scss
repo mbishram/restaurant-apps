@@ -36,10 +36,14 @@
 			padding: 1rem;
 			top: -2rem;
 
+			@media only screen and (min-width: $screen-md) {
+				padding: 1.5rem;
+			}
+
 			a {
 				display: inline-flex;
 				align-items: center;
-				min-height: 3rem;
+				min-height: $link-min-height;
 				min-width: 3rem;
 			}
 

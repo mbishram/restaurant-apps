@@ -11,7 +11,7 @@ $(() => {
             	<img 
             		class="restaurant-image" 
             		src=${restaurant.pictureId}
-            		alt="Foto ${restaurant.name}"
+            		alt="${restaurant.name}"
             	>
                 <section
                     class="card"
@@ -40,16 +40,14 @@ $(() => {
 	});
 
 	// Make the height of the article properly set
-	const setArticleHeight = (article) => {
+	const setArticleHeight = (list) => {
+		const article = list.find("article");
 		const articleDescTop = Math.abs(
 			parseInt(article.find("section").css("top"))
 		);
 
-		// Reset the height
-		article.height("initial");
-
 		// Initial height minus description section top
-		article.height(article.outerHeight() - articleDescTop);
+		article.outerHeight(list.outerHeight() - articleDescTop);
 	};
 	// Make the article section stretch till the end
 	const setArticleSectionHeight = (list) => {
@@ -62,28 +60,31 @@ $(() => {
 			parseInt(article.find("section").css("top"))
 		);
 
-		// Article section height = list height - article img height - article top
+		// Article section height = list height - article img height + article top
+		// I can't explain why this formula works, but it works!
 		const articleSectionHeight =
-			list.outerHeight() - (articleImgHeight - articleDescTop);
+			list.outerHeight() - articleImgHeight + articleDescTop;
 
-		articleSection.height(articleSectionHeight - articleDescTop);
+		articleSection.outerHeight(articleSectionHeight);
 	};
 
 	const handleArticleHeight = () => {
-		const restaurantArticles = $("#list-restaurant article");
-		// Reset all of the article sections height
-		restaurantArticles.each((_, element) => {
+		const restaurantLists = $("#list-restaurant li");
+
+		// Reset all of the article height
+		restaurantLists.each((_, element) => {
+			const article = $(element).find("article");
 			const articleSection = $(element).find("section");
+			article.height("unset");
 			articleSection.height("unset");
 		});
 
 		// Set article height
-		restaurantArticles.each((_, element) => {
+		restaurantLists.each((_, element) => {
 			setArticleHeight($(element));
 		});
 
 		// Set article section height
-		const restaurantLists = $("#list-restaurant li");
 		restaurantLists.each((_, element) => {
 			setArticleSectionHeight($(element));
 		});
@@ -94,5 +95,5 @@ $(() => {
 	// outerHeight usually doesn't load without it
 	setTimeout(handleArticleHeight, 1);
 	// Set it when the screen size changes
-	$(window).resize(handleArticleHeight);
+	$(window).on("resize", handleArticleHeight);
 });

@@ -1,18 +1,20 @@
 .nav-btn {
 	position: fixed;
 	z-index: 999;
-	top: 0.5rem;
-	right: 0.5rem;
+	top: 0.25rem;
+	right: 0.25rem;
+
+	@media only screen and (min-width: $screen-md) {
+		display: none;
+	}
 }
 
 nav {
 	position: fixed;
-	right: 0;
+	inset: 0;
 	z-index: -1;
-	width: 100vw;
-	height: 100vh;
 	background: white;
-	padding: 7rem 2rem 2rem;
+	padding: 7rem 1.5rem 1.5rem;
 	box-shadow: $shadow;
 
 	opacity: 0;
@@ -21,12 +23,23 @@ nav {
 		z-index $transition-default;
 
 	@media only screen and (min-width: $screen-md) {
-		padding: 5rem 2rem 4rem;
-		width: 18rem;
-		height: unset;
-		border: 1px solid $color-gray-3;
-		border-radius: $border-rad;
-		right: 0.5rem;
+		opacity: 1;
+		top: 1.5rem;
+		right: unset;
+		bottom: unset;
+		z-index: 998;
+		width: unset;
+		height: 4.5rem;
+		padding: 0 1.5rem;
+		border-radius: $border-rad-sm;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		a {
+			cursor: pointer;
+		}
 	}
 
 	&.open {
@@ -34,33 +47,55 @@ nav {
 		top: 0;
 		z-index: 998;
 
+		@media only screen and (min-width: $screen-md) {
+			top: 1.5rem;
+		}
+
 		a {
 			cursor: pointer;
 		}
+	}
+
+	h1 {
+		margin-bottom: 3.5rem;
 
 		@media only screen and (min-width: $screen-md) {
-			top: 0.5rem;
+			margin-bottom: 0;
+		}
+
+		img {
+			height: 3rem;
+
+			@media only screen and (min-width: $screen-md) {
+				height: 2rem;
+			}
 		}
 	}
 
-	li {
-		font-size: 1.8rem;
-		margin-bottom: 1.5rem;
-
-		&:first-child {
-			margin-bottom: 3.5rem;
+	ul {
+		@media only screen and (min-width: $screen-md) {
+			display: flex;
+			column-gap: 2rem;
 		}
-		img {
-			height: 3rem;
-		}
-		a {
-			display: inline-flex;
-			align-items: center;
-			min-height: 3rem;
-			border: none;
 
-			&:hover {
+		li {
+			font-size: 1.8rem;
+			margin-bottom: 1.5rem;
+
+			@media only screen and (min-width: $screen-md) {
+				font-size: 1rem;
+				margin-bottom: 0;
+			}
+
+			a {
+				display: inline-flex;
+				align-items: center;
+				min-height: $link-min-height;
 				border: none;
+
+				&:hover {
+					border: none;
+				}
 			}
 		}
 	}
