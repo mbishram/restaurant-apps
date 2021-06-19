@@ -3,7 +3,6 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
-const webpack = require("webpack");
 
 module.exports = {
 	entry: path.resolve(__dirname, "src/scripts/index.ts"),
@@ -73,9 +72,6 @@ module.exports = {
 					to: path.resolve(__dirname, "dist/images"),
 				},
 			],
-		}),
-		new webpack.ProvidePlugin({
-			$: "jquery",
 		}),
 		new MiniCssExtractPlugin({
 			filename: "index.css",

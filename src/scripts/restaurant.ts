@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 import data from "../DATA.json";
 
 $(() => {
@@ -44,7 +46,7 @@ $(() => {
 		const list = $(listElement);
 		const article = list.find("article");
 		const articleDescTop = Math.abs(
-			parseInt(article.find("section").css("top"))
+			parseInt(article.find("section").css("top"), 10),
 		);
 
 		// Initial height minus description section top
@@ -59,13 +61,12 @@ $(() => {
 			.find(".restaurant-image")
 			.outerHeight();
 		const articleDescTop = Math.abs(
-			parseInt(article.find("section").css("top"))
+			parseInt(article.find("section").css("top"), 10),
 		);
 
 		// Article section height = list height - article img height + article top
 		// I can't explain why this formula works, but it works!
-		const articleSectionHeight =
-			list.outerHeight() - articleImgHeight + articleDescTop;
+		const articleSectionHeight = list.outerHeight() - articleImgHeight + articleDescTop;
 
 		articleSection.outerHeight(articleSectionHeight);
 	};

@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 $(() => {
 	const nav = $("nav");
 	const navButton = $("#nav-button");
@@ -63,18 +65,12 @@ $(() => {
 	};
 
 	const container = $(".container");
-	const containerSpacing =
-		parseInt(container.css("marginLeft")) +
-		parseInt(container.css("paddingLeft"));
 	// Initial call
-	handleFixedSpacing(containerSpacing);
+	handleFixedSpacing(parseInt(container.css("marginLeft"), 10)
+		+ parseInt(container.css("paddingLeft"), 10));
 	// Set it when the screen size changes
 	$(window).on("resize", () => {
-		// I'm declaring the variable again because the value of the variable
-		// outside of this scope will become outdated when window is resized
-		const containerSpacing =
-			parseFloat(container.css("marginLeft")) +
-			parseFloat(container.css("paddingLeft"));
-		handleFixedSpacing(containerSpacing);
+		handleFixedSpacing(parseInt(container.css("marginLeft"), 10)
+			+ parseInt(container.css("paddingLeft"), 10));
 	});
 });
