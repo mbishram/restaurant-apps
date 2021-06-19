@@ -6,13 +6,18 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-	entry: path.resolve(__dirname, "src/scripts/index.js"),
+	entry: path.resolve(__dirname, "src/scripts/index.ts"),
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "bundle.js",
 	},
 	module: {
 		rules: [
+			{
+				test: /\.tsx?$/,
+				use: [{ loader: "ts-loader" }],
+				exclude: /node_modules/,
+			},
 			{
 				test: /\.s[ac]ss$/i,
 				use: [
@@ -51,6 +56,9 @@ module.exports = {
 				],
 			},
 		],
+	},
+	resolve: {
+		extensions: [".ts", ".js", ".scss", ".sass", ".css"],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

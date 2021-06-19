@@ -40,7 +40,8 @@ $(() => {
 	});
 
 	// Make the height of the article properly set
-	const setArticleHeight = (list) => {
+	const setArticleHeight = (listElement: HTMLElement) => {
+		const list = $(listElement);
 		const article = list.find("article");
 		const articleDescTop = Math.abs(
 			parseInt(article.find("section").css("top"))
@@ -50,7 +51,8 @@ $(() => {
 		article.outerHeight(list.outerHeight() - articleDescTop);
 	};
 	// Make the article section stretch till the end
-	const setArticleSectionHeight = (list) => {
+	const setArticleSectionHeight = (listElement: HTMLElement) => {
+		const list = $(listElement);
 		const article = list.find("article");
 		const articleSection = article.find("section");
 		const articleImgHeight = article
@@ -81,12 +83,12 @@ $(() => {
 
 		// Set article height
 		restaurantLists.each((_, element) => {
-			setArticleHeight($(element));
+			setArticleHeight(element);
 		});
 
 		// Set article section height
 		restaurantLists.each((_, element) => {
-			setArticleSectionHeight($(element));
+			setArticleSectionHeight(element);
 		});
 	};
 

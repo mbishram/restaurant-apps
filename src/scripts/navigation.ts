@@ -5,7 +5,7 @@ $(() => {
 	const body = $("body");
 
 	// Handler for when navigation button is clicked
-	const handleNav = (event) => {
+	const handleNav = (event: Event) => {
 		// Setting up button
 		navButtonIcon.toggleClass("bi-x");
 		navButtonIcon.toggleClass("bi-list");
@@ -31,9 +31,9 @@ $(() => {
 		}
 	};
 
-	navButton.click(handleNav);
-	body.click(closeNav);
-	nav.click((event) => {
+	navButton.on("click", handleNav);
+	body.on("click", closeNav);
+	nav.on("click", (event) => {
 		// Stop it from closing the nav when nav is clicked
 		event.stopPropagation();
 	});
@@ -44,7 +44,7 @@ $(() => {
 
 	// Make nav and skip to content to align with the container
 	// on tablet devices an up
-	const handleFixedSpacing = (spacing) => {
+	const handleFixedSpacing = (spacing: number) => {
 		// Only apply it on tablet and up
 		const mediaTablet = matchMedia("only screen and (min-width: 768px)");
 		if (mediaTablet.matches) {
