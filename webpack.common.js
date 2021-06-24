@@ -2,10 +2,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-	entry: path.resolve(__dirname, "src/scripts/index.ts"),
+	entry: path.resolve(__dirname, "./src/scripts/index.ts"),
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "bundle.js",
@@ -19,6 +20,7 @@ module.exports = {
 			},
 			{
 				test: /\.s[ac]ss$/i,
+				exclude: /\.webcomp.s[ac]ss$/,
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
@@ -26,6 +28,26 @@ module.exports = {
 					},
 					{
 						loader: "sass-loader",
+					},
+				],
+			},
+			{
+				// To compile a web component style file
+				test: /\.webcomp.s[ac]ss$/,
+				use: [
+					{
+						loader: "to-string-loader",
+					},
+					{
+						loader: "css-loader",
+					},
+					{
+						loader: "sass-loader",
+						options: {
+							sassOptions: {
+								outputStyle: "compressed",
+							},
+						},
 					},
 				],
 			},
@@ -58,6 +80,8 @@ module.exports = {
 	},
 	resolve: {
 		extensions: [".ts", ".js", ".scss", ".sass", ".css"],
+		// To fix webpack doesn't recognize path in tsconfig
+		plugins: [new TsconfigPathsPlugin()],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

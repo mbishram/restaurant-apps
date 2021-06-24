@@ -13,6 +13,11 @@ html {
 	}
 }
 
+// Make web components that are using shadow dom default to display block
+:host {
+    display: block;
+}
+
 body {
 	min-height: 100vh;
 	z-index: 1;

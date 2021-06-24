@@ -1,0 +1,19 @@
+// Removing default styling
+@import "~destyle.css/destyle.css";
+
+// Importing font
+@import "~@fontsource/manrope/200.css";
+@import "~@fontsource/manrope/300.css";
+@import "~@fontsource/manrope/400.css";
+@import "~@fontsource/manrope/500.css";
+@import "~@fontsource/manrope/600.css";
+@import "~@fontsource/manrope/700.css";
+@import "~@fontsource/manrope/800.css";
+
+// Icons
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+@import "variables";
+@import "main";
+@import "utilities";
+@import "components";

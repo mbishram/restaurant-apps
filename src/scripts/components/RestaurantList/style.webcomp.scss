@@ -1,0 +1,14 @@
+@import "../../../styles/basic-import";
+
+:host {
+    display: grid;
+    gap: 2rem;
+
+    @media only screen and (min-width: $screen-md) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media only screen and (min-width: $screen-lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

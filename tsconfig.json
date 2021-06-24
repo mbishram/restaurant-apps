@@ -1,11 +1,23 @@
 {
 	"compilerOptions": {
+        "baseUrl": "./src",
 		"noImplicitAny": true,
-		"module": "es6",
+        "module": "es6",
 		"target": "es5",
+        "strict": true,
 		"allowJs": true,
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"allowSyntheticDefaultImports": true
-	}
+		"allowSyntheticDefaultImports": true,
+        "paths": {
+            "@/*": ["./*"],
+            "@images/*": ["./public/images/*"],
+            "@scripts/*": ["./scripts/*"],
+            "@components/*": ["./scripts/components/*"],
+            "@utils/*": ["./scripts/utils/*"],
+            "@views/*": ["./scripts/views/*"],
+            "@styles/*": ["./styles/*"],
+            "@templates/*": ["./templates/*"]
+        },
+    },
 }
