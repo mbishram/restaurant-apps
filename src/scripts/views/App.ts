@@ -9,9 +9,10 @@ export class App {
 
 	static renderPage = () => {
 		const link = RouterHelper.getLinkFormatted;
-		const { ClassReference, selectedNavId } = ROUTES[link as keyof IRoutes];
+		const ClassReference = ROUTES[link as keyof IRoutes]?.ClassReference || MissingPage;
+		const selectedNavId = ROUTES[link as keyof IRoutes]?.selectedNavId;
 
-		$("main").html(ClassReference ? new ClassReference() : new MissingPage());
+		$("main").html(new ClassReference());
 		App.markSelectedNavLink(selectedNavId);
 		App.removePrevSelectedNavLink(selectedNavId);
 		// It will only scroll to top if it's "link to hash"

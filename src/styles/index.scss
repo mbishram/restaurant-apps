@@ -1,1 +1,10 @@
 @import "basic-import";
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    main {
+        flex-grow: 1;
+    }
+}

@@ -115,7 +115,7 @@ export class RestaurantItem extends HTMLElement {
 	}
 
 	private clearEventListener = () => {
-		$(window).off("resize");
+		$(window).off("resize", this.fixElementHeight);
 	}
 
 	set setRestaurant(restaurant: Restaurant) {

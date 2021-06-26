@@ -76,10 +76,8 @@ class Navigation extends HTMLElement {
 		});
 
 		// Setup navigation spacing on tablet up
-		this.handleNavSpacing(PagesHelper.containerSpacing);
-		$(window).on("resize", () => {
-			this.handleNavSpacing(PagesHelper.containerSpacing);
-		});
+		this.handleNavSpacing();
+		$(window).on("resize", this.handleNavSpacing);
 	}
 
 	private clearEventListener = () => {
@@ -101,9 +99,10 @@ class Navigation extends HTMLElement {
 
 	// Make nav and skip to content to align with the container
 	// on tablet devices an up
-	private handleNavSpacing = (spacing: number) => {
+	private handleNavSpacing = () => {
 		const mediaTablet = matchMedia("only screen and (min-width: 768px)");
 		if (mediaTablet.matches) {
+			const spacing = PagesHelper.containerSpacing;
 			this.nav.css("left", spacing);
 			this.nav.css("right", spacing);
 
@@ -118,6 +117,7 @@ class Navigation extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
+		this.clearEventListener();
 		this.render();
 	}
 }
