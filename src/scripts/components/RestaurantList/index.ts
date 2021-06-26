@@ -1,10 +1,16 @@
+import _ from "lodash";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { RestaurantItem } from "@components/RestaurantItem";
-import restaurantData from "@/DATA.json";
 import { Restaurant } from "@scripts/entities/restaurant";
 import style from "./style.webcomp.scss";
 
-class RestaurantList extends HTMLElement {
+const emptyTemplate = WebcompHelper.createTemplate(`
+	<p>Restoran tidak dapat ditemukan!</p>
+`);
+
+export class RestaurantList extends HTMLElement {
+	restaurantData: Array<Restaurant> = []
+
 	constructor() {
 		super();
 
@@ -23,11 +29,17 @@ class RestaurantList extends HTMLElement {
 	}
 
 	private renderContent = () => {
-		restaurantData.restaurants.forEach((restaurant) => {
-			const restaurantItem = new RestaurantItem();
-			this.shadowRoot?.appendChild(restaurantItem);
-			restaurantItem.setRestaurant = new Restaurant(restaurant);
-		});
+		if (!_.isEmpty(this.restaurantData)) {
+			this.restaurantData.forEach((restaurant) => {
+				const restaurantItem = new RestaurantItem();
+				this.shadowRoot?.appendChild(restaurantItem);
+				restaurantItem.setRestaurant = new Restaurant(restaurant);
+			});
+
+			return;
+		}
+
+		this.shadowRoot?.appendChild(emptyTemplate.content.cloneNode(true));
 	}
 
 	rerender = () => {
@@ -35,6 +47,11 @@ class RestaurantList extends HTMLElement {
 			this.shadowRoot?.firstChild.remove();
 		}
 		this.render();
+	}
+
+	set setRestaurantData(data: Array<Restaurant>) {
+		this.restaurantData = data;
+		this.rerender();
 	}
 }
 

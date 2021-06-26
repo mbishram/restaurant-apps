@@ -1,6 +1,8 @@
 import $ from "jquery";
 import { WebcompHelper } from "@utils/webcomp-helper";
-import { PagesHelper } from "@utils/pages-helper";
+import { LandingPage } from "@views/LandingPage";
+import { PageSection } from "@components/PageSection";
+import { Footer } from "@components/Footer";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -28,6 +30,8 @@ const template = WebcompHelper.createTemplate(`
 
 class Navigation extends HTMLElement {
 	private selector: Function = () => {};
+
+	private container = LandingPage.container || PageSection.container || Footer.container;
 
 	private nav: any;
 	private navBtn: any;
@@ -102,7 +106,8 @@ class Navigation extends HTMLElement {
 	private handleNavSpacing = () => {
 		const mediaTablet = matchMedia("only screen and (min-width: 768px)");
 		if (mediaTablet.matches) {
-			const spacing = PagesHelper.containerSpacing;
+			const spacing = (parseFloat(this.container?.css("marginLeft")) +
+				parseFloat(this.container?.css("paddingLeft"))) || 0;
 			this.nav.css("left", spacing);
 			this.nav.css("right", spacing);
 

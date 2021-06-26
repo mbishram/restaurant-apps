@@ -1,4 +1,6 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
+import restaurantData from "@/DATA.json";
+import { RestaurantList } from "@components/RestaurantList";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -11,6 +13,8 @@ const template = WebcompHelper.createTemplate(`
 `);
 
 export class FavoritePage extends HTMLElement {
+	selector: Function = () => {}
+
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
@@ -20,6 +24,18 @@ export class FavoritePage extends HTMLElement {
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+		this.setupProperties();
+		this.initRestaurantList();
+	}
+
+	private setupProperties = () => {
+		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
+	}
+
+	private initRestaurantList = () => {
+		const restaurantList = this.selector("restaurant-list")[0] as RestaurantList;
+		restaurantList.setRestaurantData =
+			WebcompHelper.convertRestaurantData(restaurantData.restaurants);
 	}
 
 	rerender = () => {

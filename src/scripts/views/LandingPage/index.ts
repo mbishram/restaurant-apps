@@ -1,4 +1,6 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
+import { RestaurantList } from "@components/RestaurantList";
+import restaurantData from "@/DATA.json";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -66,6 +68,7 @@ export class LandingPage extends HTMLElement {
 
 		this.setupProperties();
 		this.setupEventListener();
+		this.initRestaurantList();
 	}
 
 	private setupProperties = () => {
@@ -76,6 +79,12 @@ export class LandingPage extends HTMLElement {
 
 	private setupEventListener = () => {
 		WebcompHelper.scrollTo({ btnId: "#to-restaurant-btn", toId: "#restaurant-list", selector: this.selector });
+	}
+
+	private initRestaurantList = () => {
+		const restaurantList = this.selector("restaurant-list")[0] as RestaurantList;
+		restaurantList.setRestaurantData =
+			WebcompHelper.convertRestaurantData(restaurantData.restaurants);
 	}
 
 	rerender = () => {

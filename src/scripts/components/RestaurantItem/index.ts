@@ -127,6 +127,7 @@ export class RestaurantItem extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
+		this.clearEventListener();
 		this.render();
 	}
 }
