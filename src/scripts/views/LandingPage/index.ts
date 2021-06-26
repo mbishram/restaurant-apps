@@ -56,17 +56,16 @@ export class LandingPage extends HTMLElement {
 
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
-		this.attachShadow({ mode: "open" });
-		if (this.shadowRoot !== null) {
-			this.render();
-			this.setupProperties();
-			this.setupEventListener();
-		}
+		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+		this.render();
 	}
 
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+
+		this.setupProperties();
+		this.setupEventListener();
 	}
 
 	private setupProperties = () => {
@@ -77,6 +76,13 @@ export class LandingPage extends HTMLElement {
 
 	private setupEventListener = () => {
 		WebcompHelper.scrollTo({ btnId: "#to-restaurant-btn", toId: "#restaurant-list", selector: this.selector });
+	}
+
+	rerender = () => {
+		while (this.shadowRoot?.firstChild) {
+			this.shadowRoot?.firstChild.remove();
+		}
+		this.render();
 	}
 }
 

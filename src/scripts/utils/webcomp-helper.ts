@@ -21,6 +21,21 @@ export class WebcompHelper {
 	static scrollTo = ({ btnId, toId, selector = $ }: {btnId: string, toId: string, selector: any}) => {
 		selector(btnId).on("click", () => {
 			selector(toId).focus();
+
+			// Scroll a little bit before the element to account for navbar
+			const currentScrollPos = $(window).scrollTop() || 0;
+			$(window).scrollTop(currentScrollPos - 80);
 		});
+	}
+
+	// Return Attr Object
+	static getAttribute = (attribute: string, attributeLists: Array<Attr>) => {
+		let returnValue: any = null;
+
+		attributeLists.forEach((attr: Attr) => {
+			if (attr.name === attribute) returnValue = attr;
+		});
+
+		return returnValue;
 	}
 }

@@ -33,10 +33,6 @@ class Navigation extends HTMLElement {
 	private navBtn: any;
 	private navBtnIcon: any;
 
-	private skipMain: any;
-	private skipRestaurant: any;
-	private skipCTA: any;
-
 	constructor() {
 		super();
 
@@ -45,12 +41,10 @@ class Navigation extends HTMLElement {
 
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
-		this.attachShadow({ mode: "open" });
-		if (this.shadowRoot !== null) {
+		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+		$(window).on("load", () => {
 			this.render();
-			this.setupProperties();
-			this.setupEventListener();
-		}
+		});
 	}
 
 	// noinspection JSUnusedLocalSymbols
@@ -61,6 +55,8 @@ class Navigation extends HTMLElement {
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+		this.setupProperties();
+		this.setupEventListener();
 	}
 
 	private setupProperties = () => {
@@ -69,10 +65,6 @@ class Navigation extends HTMLElement {
 		this.nav = this.selector("nav");
 		this.navBtn = this.selector("#nav-button");
 		this.navBtnIcon = this.selector("#nav-button i");
-
-		this.skipMain = this.selector("#skip-main");
-		this.skipRestaurant = this.selector("#skip-restaurant");
-		this.skipCTA = this.selector("#skip-cta");
 	}
 
 	private setupEventListener = () => {
@@ -114,19 +106,20 @@ class Navigation extends HTMLElement {
 		if (mediaTablet.matches) {
 			this.nav.css("left", spacing);
 			this.nav.css("right", spacing);
-			this.skipMain.css("margin-left", spacing);
-			this.skipRestaurant.css("margin-left", spacing);
-			this.skipCTA.css("margin-left", spacing);
 
 			return;
 		}
 
 		this.nav.css("left", 0);
 		this.nav.css("right", 0);
-		this.skipMain.css("margin-left", "unset");
-		this.skipRestaurant.css("margin-left", "unset");
-		this.skipCTA.css("margin-left", "unset");
 	};
+
+	rerender = () => {
+		while (this.shadowRoot?.firstChild) {
+			this.shadowRoot?.firstChild.remove();
+		}
+		this.render();
+	}
 }
 
 window.customElements.define("custom-navigation", Navigation);

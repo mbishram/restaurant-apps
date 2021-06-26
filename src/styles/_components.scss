@@ -10,10 +10,19 @@
 	top: -3rem;
 	opacity: 0;
 
+    @media only screen and (min-width: $screen-md) {
+        left: 1.5rem;
+    }
+
 	&:focus {
 		top: 1rem;
 		opacity: 1;
+
+        @media only screen and (min-width: $screen-md) {
+            top: 1.5rem;
+        }
 	}
+
 }
 
 .sr-only {
@@ -24,10 +33,13 @@
 	height: 1px;
 	width: 1px;
 	overflow: hidden;
-	clip: rect(1px 1px 1px 1px);
 	clip: rect(1px, 1px, 1px, 1px);
 	clip-path: inset(50%);
 	white-space: nowrap;
+}
+
+.hidden-anchor {
+    display: none;
 }
 
 .container {

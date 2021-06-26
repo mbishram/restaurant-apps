@@ -1,11 +1,10 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { RestaurantItem } from "@components/RestaurantItem";
-import { RestaurantModel } from "@scripts/models/restaurant";
+import restaurantData from "@/DATA.json";
+import { Restaurant } from "@scripts/entities/restaurant";
 import style from "./style.webcomp.scss";
 
 class RestaurantList extends HTMLElement {
-	private restaurantData = new RestaurantModel().getData()
-
 	constructor() {
 		super();
 
@@ -14,23 +13,28 @@ class RestaurantList extends HTMLElement {
 
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
-		this.attachShadow({ mode: "open" });
-		if (this.shadowRoot !== null) {
-			this.render();
-			this.renderContent();
-		}
+		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+		this.render();
 	}
 
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
+		this.renderContent();
 	}
 
 	private renderContent = () => {
-		this.restaurantData.forEach((restaurant) => {
+		restaurantData.restaurants.forEach((restaurant) => {
 			const restaurantItem = new RestaurantItem();
 			this.shadowRoot?.appendChild(restaurantItem);
-			restaurantItem.setRestaurant = restaurant;
+			restaurantItem.setRestaurant = new Restaurant(restaurant);
 		});
+	}
+
+	rerender = () => {
+		while (this.shadowRoot?.firstChild) {
+			this.shadowRoot?.firstChild.remove();
+		}
+		this.render();
 	}
 }
 

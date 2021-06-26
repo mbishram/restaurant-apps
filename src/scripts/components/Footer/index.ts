@@ -9,7 +9,11 @@ const template = WebcompHelper.createTemplate(`
 	</div>
 `);
 
-class Footer extends HTMLElement {
+export class Footer extends HTMLElement {
+	private selector: Function = () => {};
+
+	static container: any;
+
 	constructor() {
 		super();
 
@@ -18,15 +22,27 @@ class Footer extends HTMLElement {
 
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
-		this.attachShadow({ mode: "open" });
-		if (this.shadowRoot !== null) {
-			this.render();
-		}
+		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+		this.render();
 	}
 
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+		this.setupProperties();
+	}
+
+	private setupProperties = () => {
+		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
+
+		Footer.container = this.selector(".container");
+	}
+
+	rerender = () => {
+		while (this.shadowRoot?.firstChild) {
+			this.shadowRoot?.firstChild.remove();
+		}
+		this.render();
 	}
 }
 

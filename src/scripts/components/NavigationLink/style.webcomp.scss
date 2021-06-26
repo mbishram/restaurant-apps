@@ -9,6 +9,10 @@
         margin-bottom: 0;
     }
 
+    .selected {
+        color: $color-primary;
+    }
+
     a {
         display: inline-flex;
         align-items: center;

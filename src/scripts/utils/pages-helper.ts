@@ -1,10 +1,12 @@
 import { LandingPage } from "@views/LandingPage";
+import { PageSection } from "@components/PageSection";
+import { Footer } from "@components/Footer";
 
 export class PagesHelper {
-	private static container = LandingPage.container;
+	private static container = LandingPage.container || PageSection.container || Footer.container;
 
 	static get containerSpacing() {
-		return parseInt(this.container.css("marginLeft"), 10)
-			+ parseInt(this.container.css("paddingLeft"), 10);
+		return (parseFloat(this.container?.css("marginLeft"))
+			+ parseFloat(this.container?.css("paddingLeft"))) || 0;
 	}
 }

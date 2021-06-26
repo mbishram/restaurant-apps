@@ -50,7 +50,7 @@ export class RestaurantItem extends HTMLElement {
 
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
-		this.attachShadow({ mode: "open" });
+		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
 	}
 
 	// noinspection JSUnusedLocalSymbols
@@ -61,6 +61,10 @@ export class RestaurantItem extends HTMLElement {
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+		this.setupProperties();
+		this.setupElement();
+		this.setupEventListener();
+		this.fixElementHeight();
 	}
 
 	private setupProperties = () => {
@@ -81,7 +85,7 @@ export class RestaurantItem extends HTMLElement {
 
 		this.section.attr("aria-label", `deskripsi ${this.restaurant.name}`);
 
-		// TODO: Restaurant detail link
+		this.heading.attr("href", `#/restoran/${this.restaurant.id}`);
 		this.heading.text(this.restaurant.name);
 
 		this.location.text(this.restaurant.city);
@@ -116,13 +120,14 @@ export class RestaurantItem extends HTMLElement {
 
 	set setRestaurant(restaurant: Restaurant) {
 		this.restaurant = restaurant;
-		if (this.shadowRoot !== null) {
-			this.render();
-			this.setupProperties();
-			this.setupElement();
-			this.setupEventListener();
-			this.fixElementHeight();
+		this.render();
+	}
+
+	rerender = () => {
+		while (this.shadowRoot?.firstChild) {
+			this.shadowRoot?.firstChild.remove();
 		}
+		this.render();
 	}
 }
 
