@@ -27,7 +27,7 @@ const template = WebcompHelper.createTemplate(`
 
 	<page-section id="restaurant-list" tabindex="-1" aria-labelledby="restaurant-header">
 		<div slot="header" id="restaurant-header">
-			 Restoran
+			 Restoran <br />
 			 <b class="text-primary">Pilihan</b> Kami!
 		</div>
 		<restaurant-list slot="content"></restaurant-list>
@@ -62,6 +62,11 @@ export class LandingPage extends HTMLElement {
 		this.render();
 	}
 
+	// noinspection JSUnusedLocalSymbols
+	private disconnectedCallback() {
+		this.clearEventListener();
+	}
+
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
@@ -81,6 +86,10 @@ export class LandingPage extends HTMLElement {
 		WebcompHelper.scrollTo({ btnId: "#to-restaurant-btn", toId: "#restaurant-list", selector: this.selector });
 	}
 
+	private clearEventListener = () => {
+		this.selector("#to-restaurant-btn").off("click");
+	}
+
 	private initRestaurantList = () => {
 		const restaurantList = this.selector("restaurant-list")[0] as RestaurantList;
 		restaurantList.setRestaurantData =
@@ -91,6 +100,7 @@ export class LandingPage extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
+		this.clearEventListener();
 		this.render();
 	}
 }

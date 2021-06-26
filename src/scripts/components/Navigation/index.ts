@@ -1,7 +1,5 @@
 import $ from "jquery";
 import { WebcompHelper } from "@utils/webcomp-helper";
-import { LandingPage } from "@views/LandingPage";
-import { PageSection } from "@components/PageSection";
 import { Footer } from "@components/Footer";
 import style from "./style.webcomp.scss";
 
@@ -31,7 +29,7 @@ const template = WebcompHelper.createTemplate(`
 class Navigation extends HTMLElement {
 	private selector: Function = () => {};
 
-	private container = LandingPage.container || PageSection.container || Footer.container;
+	private container = Footer.container;
 
 	private nav: any;
 	private navBtn: any;

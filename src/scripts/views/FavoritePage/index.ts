@@ -1,12 +1,12 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
-import restaurantData from "@/DATA.json";
 import { RestaurantList } from "@components/RestaurantList";
+import restaurantData from "@/DATA.json";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
 	<page-section id="restaurant-list" tabindex="-1" aria-labelledby="restaurant-header">
 		<div slot="header" id="restaurant-header">
-			 <b class="text-primary">Favorite</b> Page 
+			 Restoran <br /><b class="text-primary">Favorit</b> Kamu! 
 		</div>
 		<restaurant-list slot="content"></restaurant-list>
 	</page-section>
