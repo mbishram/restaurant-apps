@@ -106,7 +106,7 @@ export class DetailPage extends HTMLElement {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		document.title =
-			WebcompHelper.getDocumentTitleFormatted(WebcompHelper.convertTitleCase(this.detailData.name));
+			WebcompHelper.getDocumentTitleFormatted(this.detailData.name);
 
 		this.setupProperties();
 		this.setupEventListener();
@@ -146,7 +146,7 @@ export class DetailPage extends HTMLElement {
 	}
 
 	private setupHeader = () => {
-		this.header.text(WebcompHelper.convertTitleCase(this.detailData.name));
+		this.header.text(this.detailData.name);
 	}
 
 	private setupImg = () => {

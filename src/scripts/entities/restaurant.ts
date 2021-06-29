@@ -1,6 +1,7 @@
 import { Kategori } from "@scripts/entities/kategori";
 import { Menu } from "@scripts/entities/menu";
 import { Review } from "@scripts/entities/review";
+import { WebcompHelper } from "@utils/webcomp-helper";
 
 export class Restaurant {
 	id: string;
@@ -18,7 +19,7 @@ export class Restaurant {
 		restaurant?: Restaurant,
 	) {
 		this.id = restaurant?.id || "";
-		this.name = restaurant?.name || "";
+		this.name = WebcompHelper.convertTitleCase(restaurant?.name || "");
 		this.description = restaurant?.description || "";
 		this.city = restaurant?.city || "";
 		this.address = restaurant?.address || "";
