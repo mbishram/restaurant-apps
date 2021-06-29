@@ -25,7 +25,7 @@ const template = WebcompHelper.createTemplate(`
 		</div>
 	</section>
 
-	<page-section id="restaurant-list" tabindex="-1" aria-labelledby="restaurant-header">
+	<page-section id="restaurant-list" aria-labelledby="restaurant-header">
 		<div slot="header" id="restaurant-header">
 			 Restoran
 			 <b class="text-primary">Pilihan</b> Kami!

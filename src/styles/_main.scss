@@ -2,6 +2,12 @@
 	outline: 3px solid $color-secondary-transparent;
 }
 
+*[tabindex= "-1"] {
+    &:focus {
+        outline: 0;
+    }
+}
+
 html {
 	color: $color-dark;
 	font-size: 14px;
@@ -33,16 +39,13 @@ a {
 	}
 }
 
-p {
+p, textarea, input {
 	line-height: $line-height + 0.2;
 }
 
 h2 {
 	line-height: $line-height;
 
-	&:focus {
-		outline: 0;
-	}
 }
 
 img {
@@ -73,4 +76,3 @@ input, textarea {
 textarea {
     resize: none;
 }
-

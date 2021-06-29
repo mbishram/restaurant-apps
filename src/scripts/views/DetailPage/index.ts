@@ -8,7 +8,7 @@ import { Restaurant } from "@scripts/entities/restaurant";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
-	<page-section id="restaurant-list" tabindex="-1" aria-labelledby="restaurant-header">
+	<page-section id="restaurant-list" aria-labelledby="restaurant-header">
 		<div slot="header">
 			<span class="sr-only">Nama Restoran </span>
 			<span id="restaurant-header">Nama Restoran</span>

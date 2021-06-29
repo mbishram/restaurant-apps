@@ -2,7 +2,7 @@ import { WebcompHelper } from "@utils/webcomp-helper";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
-	<page-section id="restaurant-list" tabindex="-1" aria-labelledby="restaurant-header">
+	<page-section id="restaurant-list" aria-labelledby="restaurant-header">
 		<div slot="header" id="restaurant-header">
 			<b class="text-primary">Halaman</b> Tidak
 			Dapat Ditemukan! 

@@ -20,6 +20,7 @@ export class FavoriteButton extends HTMLElement {
 
 		this.setAttribute("role", "button");
 		this.setAttribute("tabindex", "0");
+		this.setAttribute("aria-label", "Tambah ke favorit");
 	}
 
 	// noinspection JSUnusedLocalSymbols
@@ -49,6 +50,7 @@ export class FavoriteButton extends HTMLElement {
 
 	private setupElement = () => {
 		if (this.restaurantData.name) {
+			this.setAttribute("aria-label", "Hapus dari favorit");
 			this.icon.removeClass("bi-heart");
 			this.icon.addClass("bi-heart-fill");
 			this.isFavorite = true;
@@ -72,11 +74,13 @@ export class FavoriteButton extends HTMLElement {
 		this.isFavorite = !this.isFavorite;
 
 		if (this.isFavorite) {
+			this.setAttribute("aria-label", "Hapus dari favorit");
 			this.addToFavorite();
 
 			return;
 		}
 
+		this.setAttribute("aria-label", "Tambah ke favorit");
 		this.removeFromFavorite();
 	}
 
