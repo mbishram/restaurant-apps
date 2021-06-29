@@ -1,4 +1,5 @@
 import $ from "jquery";
+import _ from "lodash";
 import { Restaurant } from "@scripts/entities/restaurant";
 import { Menu } from "@scripts/entities/menu";
 import { Review } from "@scripts/entities/review";
@@ -50,6 +51,9 @@ export class WebcompHelper {
 
 		return returnValue;
 	}
+
+	static convertTitleCase = (text: string) =>
+		_.startCase(_.toLower(text));
 
 	// Convert into Array of Restaurant
 	static convertRestaurantData = (data: Array<object>) =>

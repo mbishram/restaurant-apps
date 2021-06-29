@@ -1,1 +1,6 @@
 @import "../../../styles/basic-import";
+
+:host {
+    display: grid;
+    gap: $spacing-xs;
+}

@@ -2,7 +2,9 @@ import { WebcompHelper } from "@utils/webcomp-helper";
 import { MenuList } from "@components/MenuList";
 import { ReviewList } from "@components/ReviewList";
 import { FavoriteButton } from "@components/FavoriteButton";
-import detailData from "@/DATA_DETAIL.json";
+import { FetchData } from "@scripts/data/fetch-data";
+import { RouterHelper } from "@utils/routes-helper";
+import { Restaurant } from "@scripts/entities/restaurant";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -69,6 +71,8 @@ const template = WebcompHelper.createTemplate(`
 export class DetailPage extends HTMLElement {
 	private selector: Function = () => {}
 
+	private detailData: Restaurant = new Restaurant()
+
 	private header: any
 	private img: any
 	private kategori: any
@@ -84,15 +88,12 @@ export class DetailPage extends HTMLElement {
 	private reviewList: any
 	private favoriteButton: any
 
-	constructor() {
-		super();
-
-		document.title = WebcompHelper.getDocumentTitleFormatted(detailData.restaurant.name);
-	}
-
 	// noinspection JSUnusedLocalSymbols
-	private connectedCallback() {
+	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+		const data =
+			await FetchData.restaurantDetail(RouterHelper.getLink.id);
+		this.detailData = new Restaurant(data);
 		this.render();
 	}
 
@@ -104,6 +105,8 @@ export class DetailPage extends HTMLElement {
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+		document.title =
+			WebcompHelper.getDocumentTitleFormatted(WebcompHelper.convertTitleCase(this.detailData.name));
 
 		this.setupProperties();
 		this.setupEventListener();
@@ -143,41 +146,41 @@ export class DetailPage extends HTMLElement {
 	}
 
 	private setupHeader = () => {
-		this.header.text(detailData.restaurant.name);
+		this.header.text(WebcompHelper.convertTitleCase(this.detailData.name));
 	}
 
 	private setupImg = () => {
-		this.img.attr("src", `https://restaurant-api.dicoding.dev/images/medium/${detailData.restaurant.pictureId}`);
-		this.img.attr("alt", detailData.restaurant.name);
+		this.img.attr("src", `https://restaurant-api.dicoding.dev/images/medium/${this.detailData.pictureId}`);
+		this.img.attr("alt", this.detailData.name);
 	}
 
 	private setupDescription = () => {
 		this.kategori.text(this.formatKategori());
-		this.rating.text(detailData.restaurant.rating);
-		this.kota.text(detailData.restaurant.city);
-		this.alamat.text(detailData.restaurant.address);
-		this.deskripsi.text(detailData.restaurant.description);
+		this.rating.text(this.detailData.rating);
+		this.kota.text(this.detailData.city);
+		this.alamat.text(this.detailData.address);
+		this.deskripsi.text(this.detailData.description);
 	}
 
 	private initMenuList = () => {
 		this.makananList.setMenuData =
-			WebcompHelper.convertMenuData(detailData.restaurant.menus.foods);
+			WebcompHelper.convertMenuData(this.detailData.menus.foods);
 		this.minumanList.setMenuData =
-			WebcompHelper.convertMenuData(detailData.restaurant.menus.drinks);
+			WebcompHelper.convertMenuData(this.detailData.menus.drinks);
 	}
 
 	private initReviewList = () => {
 		this.reviewList.setReviewData =
-			WebcompHelper.convertReviewData(detailData.restaurant.customerReviews);
+			WebcompHelper.convertReviewData(this.detailData.customerReviews);
 	}
 
 	private initFavoriteButton = () => {
 		// TODO: Make it search for favorite from DB
-		this.favoriteButton.setRestaurantData = detailData.restaurant;
+		this.favoriteButton.setRestaurantData = this.detailData;
 	}
 
 	private formatKategori = () => {
-		const dataKategori = WebcompHelper.convertKategoriData(detailData.restaurant.categories);
+		const dataKategori = WebcompHelper.convertKategoriData(this.detailData.categories);
 		return dataKategori.map((kategori) =>
 			kategori.name).join(", ");
 	}

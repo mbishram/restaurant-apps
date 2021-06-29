@@ -1,6 +1,6 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { RestaurantList } from "@components/RestaurantList";
-import restaurantData from "@/DATA.json";
+import { FetchData } from "@scripts/data/fetch-data";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -56,16 +56,10 @@ export class LandingPage extends HTMLElement {
 
 	private restaurantList: any
 
-	constructor() {
-		super();
-
-		document.title = WebcompHelper.getDocumentTitleFormatted("Beranda");
-	}
-
 	// noinspection JSUnusedLocalSymbols
-	private connectedCallback() {
+	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
-		this.render();
+		await this.render();
 	}
 
 	// noinspection JSUnusedLocalSymbols
@@ -73,13 +67,14 @@ export class LandingPage extends HTMLElement {
 		this.clearEventListener();
 	}
 
-	private render = () => {
+	private render = async () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+		document.title = WebcompHelper.getDocumentTitleFormatted("Beranda");
 
 		this.setupProperties();
 		this.setupEventListener();
-		this.initRestaurantList();
+		await this.initRestaurantList();
 	}
 
 	private setupProperties = () => {
@@ -96,17 +91,18 @@ export class LandingPage extends HTMLElement {
 		this.selector("#to-restaurant-btn").off("click");
 	}
 
-	private initRestaurantList = () => {
+	private initRestaurantList = async () => {
+		const restaurantData = await FetchData.restaurantList();
 		this.restaurantList.setRestaurantData =
-			WebcompHelper.convertRestaurantData(restaurantData.restaurants);
+			WebcompHelper.convertRestaurantData(restaurantData);
 	}
 
-	rerender = () => {
+	rerender = async () => {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
 		this.clearEventListener();
-		this.render();
+		await this.render();
 	}
 }
 

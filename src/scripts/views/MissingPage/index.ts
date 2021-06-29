@@ -20,12 +20,6 @@ const template = WebcompHelper.createTemplate(`
 export class MissingPage extends HTMLElement {
 	private selector: Function = () => {}
 
-	constructor() {
-		super();
-
-		document.title = WebcompHelper.getDocumentTitleFormatted();
-	}
-
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
@@ -35,6 +29,7 @@ export class MissingPage extends HTMLElement {
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+		document.title = WebcompHelper.getDocumentTitleFormatted();
 
 		this.setupProperties();
 	}

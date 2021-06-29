@@ -1,6 +1,7 @@
 import $ from "jquery";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Restaurant } from "@scripts/entities/restaurant";
+import { CONFIGS } from "@scripts/constants/configs";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -80,7 +81,7 @@ export class RestaurantItem extends HTMLElement {
 	}
 
 	private setupElement = () => {
-		this.img.attr("src", this.restaurant.pictureId);
+		if (this.restaurant.pictureId) this.img.attr("src", `${CONFIGS.IMG_BASE_URL}${this.restaurant.pictureId}`);
 		this.img.attr("alt", this.restaurant.name);
 
 		this.section.attr("aria-label", `deskripsi ${this.restaurant.name}`);
