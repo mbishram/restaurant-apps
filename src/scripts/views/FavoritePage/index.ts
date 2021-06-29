@@ -20,7 +20,12 @@ export class FavoritePage extends HTMLElement {
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+
+		WebcompHelper.startLoading();
+
 		await this.render();
+
+		WebcompHelper.stopLoading();
 	}
 
 	private render = async () => {

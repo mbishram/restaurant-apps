@@ -1,0 +1,31 @@
+@import "../../../styles/basic-import";
+
+:host {
+    position: fixed;
+    display: grid;
+    place-content: center;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
+    z-index: -1;
+
+
+    div {
+        background-image: url("../../../public/images/loading.png");
+        background-size: cover;
+        width: 3.5rem;
+        height: 3.5rem;
+        animation: spin 2s linear infinite;
+    }
+}
+
+:host(.show) {
+    opacity: 1;
+    z-index: 1000;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

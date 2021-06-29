@@ -72,9 +72,13 @@ export class LandingPage extends HTMLElement {
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		document.title = WebcompHelper.getDocumentTitleFormatted("Beranda");
 
+		WebcompHelper.startLoading();
+
 		this.setupProperties();
 		this.setupEventListener();
 		await this.initRestaurantList();
+
+		WebcompHelper.stopLoading();
 	}
 
 	private setupProperties = () => {

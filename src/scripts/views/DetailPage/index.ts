@@ -91,10 +91,15 @@ export class DetailPage extends HTMLElement {
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+
+		WebcompHelper.startLoading();
+
 		const data =
 			await FetchData.restaurantDetail(RouterHelper.getLink.id);
 		this.detailData = new Restaurant(data);
 		this.render();
+
+		WebcompHelper.stopLoading();
 	}
 
 	// noinspection JSUnusedLocalSymbols
@@ -198,7 +203,6 @@ export class DetailPage extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
-		this.render();
 		this.render();
 	}
 }

@@ -17,6 +17,7 @@ import "@components/RestaurantList";
 import "@components/MenuList";
 import "@components/ReviewList";
 import "@components/FavoriteButton";
+import "@components/Loader";
 
 $(window).on("load", () => {
 	App.renderPage();

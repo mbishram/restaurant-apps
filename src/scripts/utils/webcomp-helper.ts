@@ -4,6 +4,7 @@ import { Restaurant } from "@scripts/entities/restaurant";
 import { Menu } from "@scripts/entities/menu";
 import { Review } from "@scripts/entities/review";
 import { Kategori } from "@scripts/entities/kategori";
+import { Loader } from "@components/Loader";
 
 export class WebcompHelper {
 	static createTemplate = (html: string) => {
@@ -74,4 +75,14 @@ export class WebcompHelper {
 	static convertReviewData = (data: Array<object>) =>
 		data.map((review) =>
 			new Review(review as Review))
+
+	static startLoading = () => {
+		const loader = $("custom-loader")[0] as Loader;
+		loader.showLoader();
+	}
+
+	static stopLoading = () => {
+		const loader = $("custom-loader")[0] as Loader;
+		loader.hideLoader();
+	}
 }
