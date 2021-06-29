@@ -56,6 +56,12 @@ export class LandingPage extends HTMLElement {
 
 	private restaurantList: any
 
+	constructor() {
+		super();
+
+		document.title = WebcompHelper.getDocumentTitleFormatted("Beranda");
+	}
+
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });

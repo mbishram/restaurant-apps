@@ -17,6 +17,12 @@ export class FavoritePage extends HTMLElement {
 
 	private restaurantList: any
 
+	constructor() {
+		super();
+
+		document.title = WebcompHelper.getDocumentTitleFormatted("Favorit");
+	}
+
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });

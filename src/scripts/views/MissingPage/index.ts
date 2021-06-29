@@ -20,6 +20,12 @@ const template = WebcompHelper.createTemplate(`
 export class MissingPage extends HTMLElement {
 	private selector: Function = () => {}
 
+	constructor() {
+		super();
+
+		document.title = WebcompHelper.getDocumentTitleFormatted();
+	}
+
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });

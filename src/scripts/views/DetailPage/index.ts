@@ -84,6 +84,12 @@ export class DetailPage extends HTMLElement {
 	private reviewList: any
 	private favoriteButton: any
 
+	constructor() {
+		super();
+
+		document.title = WebcompHelper.getDocumentTitleFormatted(detailData.restaurant.name);
+	}
+
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });

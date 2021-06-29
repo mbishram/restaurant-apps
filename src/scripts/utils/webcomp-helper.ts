@@ -37,6 +37,9 @@ export class WebcompHelper {
 		});
 	}
 
+	static getDocumentTitleFormatted = (currentPage: string = "") =>
+		`${currentPage && `${currentPage} | `}YELPing you find a restaurant.`
+
 	// Return Attr Object
 	static getAttribute = (attribute: string, attributeLists: Array<Attr>) => {
 		let returnValue: any = null;

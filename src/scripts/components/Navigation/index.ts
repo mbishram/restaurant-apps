@@ -28,11 +28,12 @@ const template = WebcompHelper.createTemplate(`
 	</nav>
 `);
 
-class Navigation extends HTMLElement {
+export class Navigation extends HTMLElement {
 	private selector: Function = () => {};
 
 	private container = Footer.container;
 
+	private logo: any;
 	private nav: any;
 	private navBtn: any;
 	private navBtnIcon: any;
@@ -57,6 +58,7 @@ class Navigation extends HTMLElement {
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+
 		this.setupProperties();
 		this.setupEventListener();
 	}
@@ -64,6 +66,7 @@ class Navigation extends HTMLElement {
 	private setupProperties = () => {
 		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
 
+		this.logo = this.selector("h1>a");
 		this.nav = this.selector("nav");
 		this.navBtn = this.selector("#nav-button");
 		this.navBtnIcon = this.selector("#nav-button i");
@@ -71,6 +74,7 @@ class Navigation extends HTMLElement {
 
 	private setupEventListener = () => {
 		// Setup navigation button on mobile
+		this.logo.on("click", this.closeNav);
 		this.navBtn.on("click", this.handleNav);
 		this.nav.on("click", (event: Event) => {
 			// Stop it from closing the nav when nav is clicked
@@ -83,9 +87,10 @@ class Navigation extends HTMLElement {
 	}
 
 	private clearEventListener = () => {
-		this.navBtn.off("click");
+		this.logo.off("click", this.closeNav);
+		this.navBtn.off("click", this.handleNav);
 		this.nav.off("click");
-		$(window).off("resize");
+		$(window).off("resize", this.handleNavSpacing);
 	}
 
 	private handleNav = (event: Event) => {
@@ -115,6 +120,14 @@ class Navigation extends HTMLElement {
 		this.nav.css("left", 0);
 		this.nav.css("right", 0);
 	};
+
+	closeNav = () => {
+		this.navBtnIcon.addClass("bi-list");
+		this.navBtnIcon.removeClass("bi-x");
+		this.navBtnIcon.removeClass("text-dark");
+
+		this.nav.removeClass("open");
+	}
 
 	rerender = () => {
 		while (this.shadowRoot?.firstChild) {

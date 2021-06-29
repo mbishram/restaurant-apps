@@ -1,6 +1,7 @@
-import { WebcompHelper } from "@utils/webcomp-helper";
 import $ from "jquery";
 import _ from "lodash";
+import { WebcompHelper } from "@utils/webcomp-helper";
+import { Navigation } from "@components/Navigation";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -26,10 +27,16 @@ export class NavigationLink extends HTMLElement {
 		this.render();
 	}
 
+	// noinspection JSUnusedLocalSymbols
+	private disconnectedCallback() {
+		this.clearEventListener();
+	}
+
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		this.setupProperties();
+		this.setupEventListener();
 		this.addAttributes();
 		this.cloneAttributes();
 	}
@@ -38,6 +45,14 @@ export class NavigationLink extends HTMLElement {
 		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
 
 		this.link = this.selector("a");
+	}
+
+	private setupEventListener = () => {
+		this.link.on("click", this.closeNav);
+	}
+
+	private clearEventListener = () => {
+		this.link.off("click", this.closeNav);
 	}
 
 	private addAttributes = () => {
@@ -66,10 +81,16 @@ export class NavigationLink extends HTMLElement {
 		return result;
 	}
 
+	private closeNav = () => {
+		const nav = $("custom-navigation")[0] as Navigation;
+		nav.closeNav();
+	}
+
 	rerender = () => {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
+		this.clearEventListener();
 		this.render();
 	}
 
