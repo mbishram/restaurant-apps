@@ -27,7 +27,7 @@ const template = WebcompHelper.createTemplate(`
 
 	<page-section id="restaurant-list" tabindex="-1" aria-labelledby="restaurant-header">
 		<div slot="header" id="restaurant-header">
-			 Restoran <br />
+			 Restoran
 			 <b class="text-primary">Pilihan</b> Kami!
 		</div>
 		<restaurant-list slot="content"></restaurant-list>
@@ -52,9 +52,9 @@ const template = WebcompHelper.createTemplate(`
 `);
 
 export class LandingPage extends HTMLElement {
-	private selector: Function = () => {};
+	private selector: Function = () => {}
 
-	static container: any;
+	private restaurantList: any
 
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
@@ -79,7 +79,7 @@ export class LandingPage extends HTMLElement {
 	private setupProperties = () => {
 		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
 
-		LandingPage.container = this.selector(".container");
+		this.restaurantList = this.selector("restaurant-list")[0] as RestaurantList;
 	}
 
 	private setupEventListener = () => {
@@ -91,8 +91,7 @@ export class LandingPage extends HTMLElement {
 	}
 
 	private initRestaurantList = () => {
-		const restaurantList = this.selector("restaurant-list")[0] as RestaurantList;
-		restaurantList.setRestaurantData =
+		this.restaurantList.setRestaurantData =
 			WebcompHelper.convertRestaurantData(restaurantData.restaurants);
 	}
 

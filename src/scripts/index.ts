@@ -9,14 +9,16 @@ import "@styles/index.scss";
 
 import { App } from "@views/App";
 
-import "@components/Navigation/index";
-import "@components/NavigationLink/index";
-import "@components/Footer/index";
-import "@components/PageSection/index";
-import "@components/RestaurantList/index";
-import "@components/RestaurantItem/index";
+import "@components/Navigation";
+import "@components/NavigationLink";
+import "@components/Footer";
+import "@components/PageSection";
+import "@components/RestaurantList";
+import "@components/MenuList";
+import "@components/ReviewList";
+import "@components/FavoriteButton";
 
-$(() => {
+$(window).on("load", () => {
 	App.renderPage();
 });
 

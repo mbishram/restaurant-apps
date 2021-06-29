@@ -6,14 +6,16 @@ import style from "./style.webcomp.scss";
 const template = WebcompHelper.createTemplate(`
 	<page-section id="restaurant-list" tabindex="-1" aria-labelledby="restaurant-header">
 		<div slot="header" id="restaurant-header">
-			 Restoran <br /><b class="text-primary">Favorit</b> Kamu! 
+			 Restoran <b class="text-primary">Favorit</b> Kamu! 
 		</div>
 		<restaurant-list slot="content"></restaurant-list>
 	</page-section>
 `);
 
 export class FavoritePage extends HTMLElement {
-	selector: Function = () => {}
+	private selector: Function = () => {}
+
+	private restaurantList: any
 
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
@@ -30,11 +32,12 @@ export class FavoritePage extends HTMLElement {
 
 	private setupProperties = () => {
 		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
+
+		this.restaurantList = this.selector("restaurant-list")[0] as RestaurantList;
 	}
 
 	private initRestaurantList = () => {
-		const restaurantList = this.selector("restaurant-list")[0] as RestaurantList;
-		restaurantList.setRestaurantData =
+		this.restaurantList.setRestaurantData =
 			WebcompHelper.convertRestaurantData(restaurantData.restaurants);
 	}
 

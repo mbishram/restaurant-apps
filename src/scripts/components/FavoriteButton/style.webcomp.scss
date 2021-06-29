@@ -1,0 +1,12 @@
+@import "../../../styles/basic-import";
+
+:host {
+    position: fixed;
+    z-index: 999;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 1.75rem !important;
+    box-shadow: $shadow;
+    color: white !important;
+    cursor: pointer;
+}

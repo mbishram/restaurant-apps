@@ -17,7 +17,7 @@ const template = WebcompHelper.createTemplate(`
 			<p class="text-gray-2">
 				<span class="sr-only">Lokasi </span>
 				<span id="location">Lokasi</span>
-				<span class="text-primary">
+				<span class="text-primary" tabindex="-1">
 					<i class="bi bi-star"></i>
 				</span>
 				<span class="sr-only">Penilaian </span>

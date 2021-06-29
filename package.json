@@ -59,6 +59,7 @@
 		"destyle.css": "^2.0.2",
 		"jquery": "^3.6.0",
 		"lodash": "^4.17.21",
+		"moment": "^2.29.1",
 		"regenerator-runtime": "^0.13.5",
 		"yarn": "^1.22.10"
 	},

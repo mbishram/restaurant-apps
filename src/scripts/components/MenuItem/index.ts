@@ -1,41 +1,50 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
+import { Menu } from "@scripts/entities/menu";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
-	<div class="container">
-		 <p class="text-gray-3">
-			   &copy; 2021 - YELPing you find a restaurant.
-		 </p>
-	</div>
+	<p class="card border-radius-sm p-sm">
+		Nama Menu
+	</p>
 `);
 
-export class Footer extends HTMLElement {
+export class MenuItem extends HTMLElement {
 	private selector: Function = () => {}
 
-	static container: any
+	private menu: Menu = new Menu()
+	private paragraph: any
 
 	constructor() {
 		super();
 
-		this.setAttribute("role", "contentinfo");
+		this.setAttribute("role", "listitem");
 	}
 
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
-		this.render();
 	}
 
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		this.setupProperties();
+		this.setupElement();
 	}
 
 	private setupProperties = () => {
 		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
 
-		Footer.container = this.selector(".container");
+		this.paragraph = this.selector("p");
+	}
+
+	private setupElement = () => {
+		this.paragraph.text(this.menu.name);
+	}
+
+	set setMenu(menu: Menu) {
+		this.menu = menu;
+		this.render();
 	}
 
 	rerender = () => {
@@ -46,4 +55,4 @@ export class Footer extends HTMLElement {
 	}
 }
 
-window.customElements.define("custom-footer", Footer);
+window.customElements.define("menu-item", MenuItem);

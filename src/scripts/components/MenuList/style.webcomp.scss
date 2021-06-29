@@ -2,7 +2,7 @@
 
 :host {
     display: grid;
-    gap: $spacing-lg;
+    gap: $spacing-xs;
 
     @media only screen and (min-width: $screen-md) {
         grid-template-columns: repeat(2, 1fr);

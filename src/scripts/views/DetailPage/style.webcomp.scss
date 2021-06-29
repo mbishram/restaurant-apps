@@ -2,4 +2,43 @@
 
 :host {
     padding-top: $page-padding-top;
+
+    .content {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-lg;
+
+        .detail-grid {
+            display: grid;
+            gap: $spacing-lg;
+            grid-template-columns: 1fr;
+
+            @media only screen and (min-width: $screen-md) {
+                grid-template-columns: 55% 1fr;
+            }
+
+            img {
+                width: 100%;
+                height: 17rem;
+                border-radius: $border-rad;
+
+                @media only screen and (min-width: $screen-md) {
+                    height: 100%;
+                }
+            }
+
+            section {
+                align-self: flex-end;
+            }
+        }
+
+        section {
+            padding: 0 1rem;
+
+            @media only screen and (min-width: $screen-sm) {
+                padding: 0;
+            }
+        }
+    }
 }

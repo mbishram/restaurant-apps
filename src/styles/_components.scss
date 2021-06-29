@@ -1,8 +1,9 @@
 .reader-focus {
-	width: unset;
+	width: unset !important;
 	background: white;
 	position: fixed;
 	left: 1rem;
+    right: 1rem;
 	border: none;
 	z-index: 1000;
 
@@ -12,6 +13,7 @@
 
     @media only screen and (min-width: $screen-md) {
         left: 1.5rem;
+        right: unset;
     }
 
 	&:focus {
@@ -60,3 +62,69 @@
 		max-width: $screen-lg;
 	}
 }
+
+.btn {
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: $link-min-size;
+    min-width: $link-min-size;
+    border-radius: $border-rad-sm;
+    border: none;
+    padding: 0.8rem 2rem;
+    transition: background-color $transition-default;
+    font-weight: bold;
+
+    &:hover {
+        border: none;
+    }
+
+    @media only screen and (min-width: $screen-md) {
+        width: unset;
+    }
+}
+
+.btn-icon {
+    font-size: 2.5rem;
+    padding: 0;
+    height: $link-min-size;
+    width: $link-min-size;
+}
+
+.btn-primary {
+    color: $color-dark;
+    background: $color-primary;
+
+    &:hover {
+        background: $color-primary-light;
+        color: $color-dark;
+    }
+}
+
+.btn-secondary {
+    color: $color-dark;
+    background: $color-secondary;
+
+    &:hover {
+        background: $color-secondary-light;
+        color: $color-dark;
+    }
+}
+
+.btn-gray{
+    color: $color-dark;
+    background: $color-gray-3;
+
+    &:hover {
+        background: $color-gray-4;
+        color: $color-dark;
+    }
+}
+
+.card {
+    border-radius: $border-rad;
+    box-shadow: $shadow;
+}
+

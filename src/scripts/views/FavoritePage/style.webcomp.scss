@@ -2,4 +2,8 @@
 
 :host {
     padding-top: $page-padding-top;
+
+    div[slot="header"] {
+        max-width: 16rem;
+    }
 }

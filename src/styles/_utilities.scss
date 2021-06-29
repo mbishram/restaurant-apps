@@ -1,79 +1,131 @@
-// Button
-.btn {
-	display: inline-flex;
-	width: 100%;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	min-height: $link-min-height;
-	min-width: 3rem;
-	border-radius: $border-rad-sm;
-	border: none;
-	padding: 0.9rem 2rem;
-	transition: background-color $transition-default;
-	font-weight: bold;
-
-	&:hover {
-		border: none;
-	}
-
-	@media only screen and (min-width: $screen-md) {
-		width: unset;
-	}
+// Margin
+.mt-xs, .my-xs, .m-xs {
+    margin-top: $spacing-xs;
 }
 
-.btn-icon {
-	font-size: 2.5rem;
-	padding: 0.5rem;
-	height: 4rem;
-	width: 4rem;
+.mb-xs, .my-xs, .m-xs {
+    margin-bottom: $spacing-xs;
 }
 
-.btn-primary {
-	color: $color-dark;
-	background: $color-primary;
-
-	&:hover {
-		background: $color-primary-light;
-		color: $color-dark;
-	}
+.ml-xs, .mx-xs, .m-xs {
+    margin-left: $spacing-xs;
 }
 
-.btn-secondary {
-	color: $color-dark;
-	background: $color-secondary;
-
-	&:hover {
-		background: $color-secondary-light;
-		color: $color-dark;
-	}
+.mr-xs, .mx-xs, .m-xs {
+    margin-right: $spacing-xs;
 }
 
-.btn-gray{
-    color: $color-dark;
-    background: $color-gray-2;
-
-    &:hover {
-        background: $color-gray-3;
-        color: $color-dark;
-    }
+.mt-sm, .my-sm, .m-sm {
+    margin-top: $spacing-sm;
 }
 
-// Spacing
-.mt-sm {
-    margin-top: 1rem;
+.mb-sm, .my-sm, .m-sm {
+    margin-bottom: $spacing-sm;
 }
 
-.mt-md {
-    margin-top: 2rem;
+.ml-sm, .mx-sm, .m-sm {
+    margin-left: $spacing-sm;
 }
 
-.content {
-    padding: 0 1rem;
+.mr-sm, .mx-sm, .m-sm {
+    margin-right: $spacing-sm;
+}
 
-    @media only screen and (min-width: $screen-sm) {
-        padding: 0;
-    }
+.mt-md, .my-md, .m-md {
+    margin-top: $spacing-md;
+}
+
+.mb-md, .my-md, .m-md {
+    margin-bottom: $spacing-md;
+}
+
+.ml-md, .mx-md, .m-md {
+    margin-left: $spacing-md;
+}
+
+.mr-md, .mx-md, .m-md {
+    margin-right: $spacing-md;
+}
+
+.mt-lg, .my-lg, .m-lg {
+    margin-top: $spacing-lg;
+}
+
+.mb-lg, .my-lg, .m-lg {
+    margin-bottom: $spacing-lg;
+}
+
+.ml-lg, .mx-lg, .m-lg {
+    margin-left: $spacing-lg;
+}
+
+.mr-lg, .mx-lg, .m-lg {
+    margin-right: $spacing-lg;
+}
+
+// Padding
+.pt-xs, .py-xs, .p-xs {
+    padding-top: $spacing-xs;
+}
+
+.pb-xs, .py-xs, .p-xs {
+    padding-bottom: $spacing-xs;
+}
+
+.pl-xs, .px-xs, .p-xs {
+    padding-left: $spacing-xs;
+}
+
+.pr-xs, .px-xs, .p-xs {
+    padding-right: $spacing-xs;
+}
+
+.pt-sm, .py-sm, .p-sm {
+    padding-top: $spacing-sm;
+}
+
+.pb-sm, .py-sm, .p-sm {
+    padding-bottom: $spacing-sm;
+}
+
+.pl-sm, .px-sm, .p-sm {
+    padding-left: $spacing-sm;
+}
+
+.pr-sm, .px-sm, .p-sm {
+    padding-right: $spacing-sm;
+}
+
+.pt-md, .py-md, .p-md {
+    padding-top: $spacing-md;
+}
+
+.pb-md, .py-md, .p-md {
+    padding-bottom: $spacing-md;
+}
+
+.pl-md, .px-md, .p-md {
+    padding-left: $spacing-md;
+}
+
+.pr-md, .px-md, .p-md {
+    padding-right: $spacing-md;
+}
+
+.pt-lg, .py-lg, .p-lg {
+    padding-top: $spacing-lg;
+}
+
+.pb-lg, .py-lg, .p-lg {
+    padding-bottom: $spacing-lg;
+}
+
+.pl-lg, .px-lg, .p-lg {
+    padding-left: $spacing-lg;
+}
+
+.pr-lg, .px-lg, .p-lg {
+    padding-right: $spacing-lg;
 }
 
 // Typography
@@ -83,6 +135,10 @@
 
 .text-md {
 	font-size: $font-md;
+}
+
+.text-sm {
+    font-size: $font-sm;
 }
 
 // Text Color
@@ -114,6 +170,10 @@
 	color: $color-gray-3;
 }
 
+.text-gray-4 {
+    color: $color-gray-4;
+}
+
 // Alignment
 .text-center {
     text-align: center;
@@ -133,7 +193,11 @@
 	}
 }
 
-.card {
-	border-radius: $border-rad;
-	box-shadow: $shadow;
+// Border Radius
+.border-radius-md {
+    border-right: $border-rad !important;
+}
+
+.border-radius-sm {
+    border-radius: $border-rad-sm !important;
 }

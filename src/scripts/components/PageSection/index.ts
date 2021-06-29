@@ -8,13 +8,10 @@ const template = WebcompHelper.createTemplate(`
 		</h2>
 		<slot name="content"></slotname>
 	</div>
+	<slot></slot>
 `);
 
 export class PageSection extends HTMLElement {
-	private selector: Function = () => {};
-
-	static container: any;
-
 	constructor() {
 		super();
 
@@ -30,13 +27,6 @@ export class PageSection extends HTMLElement {
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
-		this.setupProperties();
-	}
-
-	private setupProperties = () => {
-		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
-
-		PageSection.container = this.selector(".container");
 	}
 
 	rerender = () => {

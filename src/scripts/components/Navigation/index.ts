@@ -14,11 +14,13 @@ const template = WebcompHelper.createTemplate(`
 	</button>
 	<nav>
 		<h1 aria-label="yelping you pick a restaurant.">
-			<!--suppress HtmlUnknownTarget -->
-			<img
-				src="./images/yelping-logo.svg"
-				alt="logo yelping you pick a restaurant."
-			/>
+			<a href="#">
+				<!--suppress HtmlUnknownTarget -->
+				<img
+					src="./images/yelping-logo.svg"
+					alt="logo yelping you pick a restaurant."
+				/>
+			</a>
 		</h1>
 		<ul>
 			<slot></slot>
@@ -44,9 +46,7 @@ class Navigation extends HTMLElement {
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
-		$(window).on("load", () => {
-			this.render();
-		});
+		this.render();
 	}
 
 	// noinspection JSUnusedLocalSymbols

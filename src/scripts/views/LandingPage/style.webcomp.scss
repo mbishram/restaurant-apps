@@ -45,6 +45,10 @@
         }
     }
 
+    div[slot="header"] {
+        max-width: 16rem;
+    }
+
     #cta {
         margin-bottom: 4.5rem;
         color: $color-light;

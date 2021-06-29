@@ -1,5 +1,8 @@
 import $ from "jquery";
 import { Restaurant } from "@scripts/entities/restaurant";
+import { Menu } from "@scripts/entities/menu";
+import { Review } from "@scripts/entities/review";
+import { Kategori } from "@scripts/entities/kategori";
 
 export class WebcompHelper {
 	static createTemplate = (html: string) => {
@@ -49,4 +52,19 @@ export class WebcompHelper {
 	static convertRestaurantData = (data: Array<object>) =>
 		data.map((restaurant) =>
 			new Restaurant(restaurant as Restaurant))
+
+	// Convert into Array of Kategori
+	static convertKategoriData = (data: Array<object>) =>
+		data.map((kategori) =>
+			new Kategori(kategori as Kategori))
+
+	// Convert into Array of Menu
+	static convertMenuData = (data: Array<object>) =>
+		data.map((menu) =>
+			new Menu(menu as Menu))
+
+	// Convert into Array of Review
+	static convertReviewData = (data: Array<object>) =>
+		data.map((review) =>
+			new Review(review as Review))
 }

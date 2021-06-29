@@ -4,14 +4,15 @@ import style from "./style.webcomp.scss";
 const template = WebcompHelper.createTemplate(`
 	<page-section id="restaurant-list" tabindex="-1" aria-labelledby="restaurant-header">
 		<div slot="header" id="restaurant-header">
-			<b class="text-primary">Halaman</b> Tidak <br />Dapat Ditemukan! 
+			<b class="text-primary">Halaman</b> Tidak
+			Dapat Ditemukan! 
 		</div>
-		<div slot="content" class="content">
+		<div slot="content">
 			<p>
-				Halaman yang Anda cari tidak dapat ditemukan! <br />
+				Halaman yang Anda cari tidak dapat ditemukan!
 				Coba periksa kembali link, atau kembali ke halaman sebelumnya.
 			</p>
-			<a href="javascript: history.back()" class="btn btn-gray mt-md">Kembali</a>
+			<a href="javascript: history.back()" class="btn btn-gray mt-lg">Kembali</a>
 		</div>
 	</page-section>
 `);

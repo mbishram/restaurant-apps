@@ -1,5 +1,5 @@
 *:focus-visible {
-	outline: 3px solid $color-secondary;
+	outline: 3px solid $color-transparent;
 }
 
 html {
@@ -28,8 +28,8 @@ a {
 	transition: color $transition-default, border-bottom $transition-default;
 
 	&:hover {
-		color: $color-secondary;
-		border-bottom: 1px solid $color-secondary;
+		color: $color-primary;
+		border-bottom: 1px solid $color-primary;
 	}
 }
 
@@ -44,3 +44,33 @@ h2 {
 		outline: 0;
 	}
 }
+
+img {
+    object-fit: cover;
+}
+
+div[slot="content"] {
+    padding: 0 1rem;
+
+    @media only screen and (min-width: $screen-sm) {
+        padding: 0;
+    }
+}
+
+label {
+    display: block;
+}
+
+input, textarea {
+    border: 1px solid $color-gray-4;
+    border-radius: $border-rad-sm;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    min-width: $link-min-size;
+    min-height: $link-min-size;
+}
+
+textarea {
+    resize: none;
+}
+

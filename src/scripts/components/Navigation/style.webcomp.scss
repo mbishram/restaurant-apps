@@ -4,8 +4,8 @@
     .nav-btn {
         position: fixed;
         z-index: 999;
-        top: 0.25rem;
-        right: 0.25rem;
+        top: 0.85rem;
+        right: 0.85rem;
 
         @media only screen and (min-width: $screen-md) {
             display: none;
@@ -80,6 +80,10 @@
                 display: flex;
                 column-gap: 2rem;
             }
+        }
+
+        a {
+            border: none;
         }
     }
 }
