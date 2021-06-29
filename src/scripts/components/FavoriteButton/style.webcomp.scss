@@ -5,8 +5,13 @@
     z-index: 999;
     bottom: 1rem;
     right: 1rem;
-    font-size: 1.75rem !important;
+    font-size: 1.65rem !important;
     box-shadow: $shadow;
     color: white !important;
     cursor: pointer;
+
+    @media only screen and (min-width: $screen-md) {
+        bottom: 1.25rem;
+        right: 1.5rem;
+    }
 }
