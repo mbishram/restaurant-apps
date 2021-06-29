@@ -7,7 +7,7 @@
 	border: none;
 	z-index: 1000;
 
-	transition: top $transition-default, opacity $transition-default;
+	transition: top $transition-default, opacity $transition-default !important;
 	top: -3rem;
 	opacity: 0;
 
