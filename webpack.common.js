@@ -111,6 +111,7 @@ module.exports = {
 			short_name: "YELPing",
 			description: "Restaurant listing website for dicoding submission.",
 			display: "standalone",
+			theme_color: "#ffffff",
 			background_color: "#ffffff",
 			icons: [
 				{
