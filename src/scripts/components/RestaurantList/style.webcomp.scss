@@ -4,6 +4,14 @@
     display: grid;
     gap: $spacing-lg;
 
+    p {
+        padding: 0 $spacing-sm;
+
+        @media only screen and (min-width: $screen-sm) {
+            padding: 0;
+        }
+    }
+
     @media only screen and (min-width: $screen-md) {
         grid-template-columns: repeat(2, 1fr);
     }
