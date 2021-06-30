@@ -1,3 +1,5 @@
+import $ from "jquery";
+import _ from "lodash";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { MenuList } from "@components/MenuList";
 import { ReviewList } from "@components/ReviewList";
@@ -5,6 +7,9 @@ import { FavoriteButton } from "@components/FavoriteButton";
 import { FetchData } from "@scripts/data/fetch-data";
 import { RouterHelper } from "@utils/routes-helper";
 import { Restaurant } from "@scripts/entities/restaurant";
+import { ALERT_TYPES } from "@scripts/constants/alert-types";
+import { CustomAlert } from "@components/Alert";
+import { AlertHelper } from "@utils/alert-helper";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -87,6 +92,7 @@ export class DetailPage extends HTMLElement {
 	private reviewFormDesc: any
 	private reviewList: any
 	private favoriteButton: any
+	private alert: any
 
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
@@ -140,6 +146,7 @@ export class DetailPage extends HTMLElement {
 		this.reviewFormDesc = this.selector("form #yelping-desc");
 		this.reviewList = this.selector("review-list")[0] as ReviewList;
 		this.favoriteButton = this.selector("favorite-button")[0] as FavoriteButton;
+		this.alert = $("custom-alert")[0] as CustomAlert;
 	}
 
 	private setupEventListener = () => {
@@ -190,21 +197,49 @@ export class DetailPage extends HTMLElement {
 			kategori.name).join(", ");
 	}
 
-	private handleSubmitReview = (event: Event) => {
-		// TODO: Submit review to api
-		console.log(this.reviewFormName.val(), this.reviewFormDesc.val());
+	private handleSubmitReview = async (event: Event) => {
+		event.preventDefault();
+
+		if (!(this.reviewFormName.val() && this.reviewFormDesc.val())) {
+			AlertHelper.createAlert(ALERT_TYPES.ERROR, "Terdapat input yang belum terisi! Periksa kembali data yang Anda masukkan.");
+
+			return;
+		}
+
+		const reviewData =
+			await FetchData.createReview(
+				{
+					id: RouterHelper.getLink.id,
+					name: this.reviewFormName.val(),
+					review: this.reviewFormDesc.val(),
+				},
+			);
+
+		if (_.isEmpty(reviewData)) {
+			return;
+		}
+
+		this.resetReviewForm();
+		this.refreshReviewData(reviewData);
+	}
+
+	private resetReviewForm = () => {
 		this.reviewFormName.val("");
 		this.reviewFormDesc.val("");
-
-		event.preventDefault();
 	}
 
-	rerender = () => {
-		while (this.shadowRoot?.firstChild) {
-			this.shadowRoot?.firstChild.remove();
-		}
-		this.render();
+	private refreshReviewData = (data: Array<object>) => {
+		this.detailData.customerReviews =
+			WebcompHelper.convertReviewData(data);
+		this.rerender();
 	}
+
+rerender = () => {
+	while (this.shadowRoot?.firstChild) {
+		this.shadowRoot?.firstChild.remove();
+	}
+	this.render();
+}
 }
 
 window.customElements.define("detail-page", DetailPage);

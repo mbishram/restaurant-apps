@@ -5,7 +5,7 @@ export class Alert {
 	message: string
 
 	constructor(alert?: Alert) {
-		this.type = alert?.type || ALERT_TYPES.warning;
+		this.type = alert?.type || ALERT_TYPES.WARNING;
 		this.message = alert?.message || "";
 	}
 }

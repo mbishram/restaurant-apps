@@ -54,12 +54,20 @@ const template = WebcompHelper.createTemplate(`
 export class LandingPage extends HTMLElement {
 	private selector: Function = () => {}
 
+	private restaurantData: Array<object> = []
+
 	private restaurantList: any
 
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+
+		WebcompHelper.startLoading();
+
+		this.restaurantData = await FetchData.restaurantList();
 		await this.render();
+
+		WebcompHelper.stopLoading();
 	}
 
 	// noinspection JSUnusedLocalSymbols
@@ -72,13 +80,9 @@ export class LandingPage extends HTMLElement {
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		document.title = WebcompHelper.getDocumentTitleFormatted("Beranda");
 
-		WebcompHelper.startLoading();
-
 		this.setupProperties();
 		this.setupEventListener();
 		await this.initRestaurantList();
-
-		WebcompHelper.stopLoading();
 	}
 
 	private setupProperties = () => {
@@ -96,9 +100,8 @@ export class LandingPage extends HTMLElement {
 	}
 
 	private initRestaurantList = async () => {
-		const restaurantData = await FetchData.restaurantList();
 		this.restaurantList.setRestaurantData =
-			WebcompHelper.convertRestaurantData(restaurantData);
+			WebcompHelper.convertRestaurantData(this.restaurantData);
 	}
 
 	rerender = async () => {

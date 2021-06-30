@@ -79,8 +79,9 @@ export class CustomAlert extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
-		$(this).removeClass();
 		clearTimeout(this.timeout);
+		$(this).removeClass();
+		this.closeAlert();
 		this.render();
 	}
 

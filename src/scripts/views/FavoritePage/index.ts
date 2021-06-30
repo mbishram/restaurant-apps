@@ -15,6 +15,8 @@ const template = WebcompHelper.createTemplate(`
 export class FavoritePage extends HTMLElement {
 	private selector: Function = () => {}
 
+	private restaurantData: Array<object> = []
+
 	private restaurantList: any
 
 	// noinspection JSUnusedLocalSymbols
@@ -23,6 +25,8 @@ export class FavoritePage extends HTMLElement {
 
 		WebcompHelper.startLoading();
 
+		// TODO: Get it from DB
+		this.restaurantData = await FetchData.restaurantList();
 		await this.render();
 
 		WebcompHelper.stopLoading();
@@ -44,10 +48,8 @@ export class FavoritePage extends HTMLElement {
 	}
 
 	private initRestaurantList = async () => {
-		// TODO: Get it from DB
-		const restaurantData = await FetchData.restaurantList();
 		this.restaurantList.setRestaurantData =
-			WebcompHelper.convertRestaurantData(restaurantData);
+			WebcompHelper.convertRestaurantData(this.restaurantData);
 	}
 
 	rerender = () => {

@@ -1,5 +1,5 @@
 export const ALERT_TYPES = {
-	success: "success",
-	error: "error",
-	warning: "warning",
+	SUCCESS: "success",
+	ERROR: "error",
+	WARNING: "warning",
 };
