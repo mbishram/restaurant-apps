@@ -12,6 +12,7 @@ export class CustomAlert extends HTMLElement {
 	private selector: Function = () => {}
 
 	private alertData: Alert = new Alert()
+	private timeout!: ReturnType<typeof setTimeout>
 
 	private paragraph: any
 
@@ -66,7 +67,7 @@ export class CustomAlert extends HTMLElement {
 	private openAlert = () => {
 		$(this).addClass("open");
 		$(this).attr("role", "alert");
-		setTimeout(this.closeAlert, 5500);
+		this.timeout = setTimeout(this.closeAlert, 5500);
 	}
 
 	private closeAlert = () => {
@@ -79,6 +80,7 @@ export class CustomAlert extends HTMLElement {
 			this.shadowRoot?.firstChild.remove();
 		}
 		$(this).removeClass();
+		clearTimeout(this.timeout);
 		this.render();
 	}
 
