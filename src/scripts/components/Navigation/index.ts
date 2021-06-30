@@ -31,8 +31,6 @@ const template = WebcompHelper.createTemplate(`
 export class Navigation extends HTMLElement {
 	private selector: Function = () => {};
 
-	private container = Footer.container;
-
 	private logo: any;
 	private nav: any;
 	private navBtn: any;
@@ -60,6 +58,7 @@ export class Navigation extends HTMLElement {
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 
 		this.setupProperties();
+		this.handleNavSpacing();
 		this.setupEventListener();
 	}
 
@@ -82,7 +81,6 @@ export class Navigation extends HTMLElement {
 		});
 
 		// Setup navigation spacing on tablet up
-		this.handleNavSpacing();
 		$(window).on("resize", this.handleNavSpacing);
 	}
 
@@ -107,10 +105,8 @@ export class Navigation extends HTMLElement {
 	// Make nav and skip to content to align with the container
 	// on tablet devices an up
 	private handleNavSpacing = () => {
-		const mediaTablet = matchMedia("only screen and (min-width: 768px)");
-		if (mediaTablet.matches) {
-			const spacing = (parseFloat(this.container?.css("marginLeft")) +
-				parseFloat(this.container?.css("paddingLeft"))) || 0;
+		if (WebcompHelper.isTabletUp()) {
+			const spacing = Footer.getContainerSpacing;
 			this.nav.css("left", spacing);
 			this.nav.css("right", spacing);
 

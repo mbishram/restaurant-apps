@@ -12,7 +12,7 @@ const template = WebcompHelper.createTemplate(`
 export class Footer extends HTMLElement {
 	private selector: Function = () => {}
 
-	static container: any
+	private static container: any
 
 	constructor() {
 		super();
@@ -43,6 +43,11 @@ export class Footer extends HTMLElement {
 			this.shadowRoot?.firstChild.remove();
 		}
 		this.render();
+	}
+
+	static get getContainerSpacing() {
+		return (parseFloat(this.container?.css("marginLeft")) +
+			parseFloat(this.container?.css("paddingLeft"))) || 0;
 	}
 }
 

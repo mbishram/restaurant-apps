@@ -85,4 +85,9 @@ export class WebcompHelper {
 		const loader = $("custom-loader")[0] as Loader;
 		loader.hideLoader();
 	}
+
+	static isTabletUp = () => {
+		const mediaTablet = matchMedia("only screen and (min-width: 768px)");
+		return mediaTablet.matches;
+	}
 }

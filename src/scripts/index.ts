@@ -18,6 +18,7 @@ import "@components/MenuList";
 import "@components/ReviewList";
 import "@components/FavoriteButton";
 import "@components/Loader";
+import "@components/Alert";
 
 $(window).on("load", () => {
 	App.renderPage();

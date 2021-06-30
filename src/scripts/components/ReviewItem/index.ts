@@ -36,6 +36,7 @@ export class ReviewItem extends HTMLElement {
 	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
+
 		this.setupProperties();
 		this.setupElement();
 	}
