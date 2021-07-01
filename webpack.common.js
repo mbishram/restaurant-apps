@@ -126,24 +126,34 @@ module.exports = {
 		}),
 		new GenerateSW({
 			swDest: "./sw.js",
-			runtimeCaching: [{
-				urlPattern: /\/#.+$/,
-				handler: "StaleWhileRevalidate",
-				options: {
-					cacheName: "markup",
-				},
-			},
-			{
-				urlPattern: /https:\/\/restaurant-api\.dicoding\.dev\/.+/,
-				handler: "NetworkFirst",
-				options: {
-					cacheName: "restaurant-api",
-					expiration: {
-						maxAgeSeconds: 60 * 60,
+			runtimeCaching: [
+				{
+					urlPattern: /\/$/,
+					handler: "StaleWhileRevalidate",
+					options: {
+						cacheName: "markup",
 					},
 				},
-
-			},
+				{
+					urlPattern: /https:\/\/restaurant-api\.dicoding\.dev\/.+/,
+					handler: "NetworkFirst",
+					options: {
+						cacheName: "restaurant-api",
+						expiration: {
+							maxAgeSeconds: 60 * 60, // An hour
+						},
+					},
+				},
+				{
+					urlPattern: /.ico$/,
+					handler: "CacheFirst",
+					options: {
+						cacheName: "assets",
+						expiration: {
+							maxAgeSeconds: 30 * 24 * 60 * 60, // A month
+						},
+					},
+				},
 			],
 		}),
 		new CleanWebpackPlugin(),
