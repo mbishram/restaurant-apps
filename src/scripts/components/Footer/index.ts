@@ -1,4 +1,5 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -12,7 +13,7 @@ const template = WebcompHelper.createTemplate(`
 export class Footer extends HTMLElement {
 	private selector: Function = () => {}
 
-	private static container: any
+	private static container: jQuery
 
 	constructor() {
 		super();

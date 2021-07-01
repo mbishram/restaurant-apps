@@ -1,6 +1,7 @@
-import $ from "jquery";
+import * as $ from "jquery";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Restaurant } from "@scripts/entities/restaurant";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -13,7 +14,7 @@ export class FavoriteButton extends HTMLElement {
 	private restaurantData: Restaurant = new Restaurant()
 	private isFavorite: boolean = false
 
-	private icon: any
+	private icon!: jQuery
 
 	constructor() {
 		super();

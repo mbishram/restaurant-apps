@@ -10,6 +10,7 @@ import { Restaurant } from "@scripts/entities/restaurant";
 import { ALERT_TYPES } from "@scripts/constants/alert-types";
 import { CustomAlert } from "@components/Alert";
 import { AlertHelper } from "@utils/alert-helper";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -78,21 +79,21 @@ export class DetailPage extends HTMLElement {
 
 	private detailData: Restaurant = new Restaurant()
 
-	private header: any
-	private img: any
-	private kategori: any
-	private rating: any
-	private kota: any
-	private alamat: any
-	private deskripsi: any
-	private makananList: any
-	private minumanList: any
-	private reviewForm: any
-	private reviewFormName: any
-	private reviewFormDesc: any
-	private reviewList: any
-	private favoriteButton: any
-	private alert: any
+	private header!: jQuery
+	private img!: jQuery
+	private kategori!: jQuery
+	private rating!: jQuery
+	private kota!: jQuery
+	private alamat!: jQuery
+	private deskripsi!: jQuery
+	private makananList: MenuList = new MenuList()
+	private minumanList: MenuList = new MenuList()
+	private reviewForm!: jQuery
+	private reviewFormName!: jQuery
+	private reviewFormDesc!: jQuery
+	private reviewList: ReviewList = new ReviewList()
+	private favoriteButton: FavoriteButton = new FavoriteButton()
+	private alert: CustomAlert = new CustomAlert()
 
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
@@ -154,7 +155,7 @@ export class DetailPage extends HTMLElement {
 	}
 
 	private clearEventListener = () => {
-		this.reviewForm.off("submit", this.handleSubmitReview);
+		this.reviewForm.off("submit");
 	}
 
 	private setupHeader = () => {
@@ -210,8 +211,8 @@ export class DetailPage extends HTMLElement {
 			await FetchData.createReview(
 				{
 					id: RouterHelper.getLink.id,
-					name: this.reviewFormName.val(),
-					review: this.reviewFormDesc.val(),
+					name: String(this.reviewFormName.val()),
+					review: String(this.reviewFormDesc.val()),
 				},
 			);
 

@@ -56,7 +56,7 @@ export class LandingPage extends HTMLElement {
 
 	private restaurantData: Array<object> = []
 
-	private restaurantList: any
+	private restaurantList: RestaurantList = new RestaurantList();
 
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
@@ -65,7 +65,7 @@ export class LandingPage extends HTMLElement {
 		WebcompHelper.startLoading();
 
 		this.restaurantData = await FetchData.restaurantList();
-		await this.render();
+		this.render();
 
 		WebcompHelper.stopLoading();
 	}
@@ -75,14 +75,14 @@ export class LandingPage extends HTMLElement {
 		this.clearEventListener();
 	}
 
-	private render = async () => {
+	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		document.title = WebcompHelper.getDocumentTitleFormatted("Beranda");
 
 		this.setupProperties();
 		this.setupEventListener();
-		await this.initRestaurantList();
+		this.initRestaurantList();
 	}
 
 	private setupProperties = () => {
@@ -99,17 +99,17 @@ export class LandingPage extends HTMLElement {
 		this.selector("#to-restaurant-btn").off("click");
 	}
 
-	private initRestaurantList = async () => {
+	private initRestaurantList = () => {
 		this.restaurantList.setRestaurantData =
 			WebcompHelper.convertRestaurantData(this.restaurantData);
 	}
 
-	rerender = async () => {
+	rerender = () => {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
 		this.clearEventListener();
-		await this.render();
+		this.render();
 	}
 }
 

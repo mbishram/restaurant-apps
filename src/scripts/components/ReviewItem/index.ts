@@ -1,5 +1,6 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Review } from "@scripts/entities/review";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -18,9 +19,9 @@ export class ReviewItem extends HTMLElement {
 	private selector: Function = () => {}
 
 	private review: Review = new Review()
-	private deskripsi: any
-	private nama: any
-	private tanggal: any
+	private deskripsi!: jQuery
+	private nama!: jQuery
+	private tanggal!: jQuery
 
 	constructor() {
 		super();

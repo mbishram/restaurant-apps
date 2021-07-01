@@ -11,6 +11,7 @@
 		"allowSyntheticDefaultImports": true,
         "paths": {
             "@/*": ["./*"],
+            "@typings/*": ["./scripts/typings/*.d.ts"],
             "@images/*": ["./public/images/*"],
             "@scripts/*": ["./scripts/*"],
             "@components/*": ["./scripts/components/*"],

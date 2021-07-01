@@ -17,7 +17,7 @@ export class FavoritePage extends HTMLElement {
 
 	private restaurantData: Array<object> = []
 
-	private restaurantList: any
+	private restaurantList: RestaurantList = new RestaurantList()
 
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
@@ -27,18 +27,18 @@ export class FavoritePage extends HTMLElement {
 
 		// TODO: Get it from DB
 		this.restaurantData = await FetchData.restaurantList();
-		await this.render();
+		this.render();
 
 		WebcompHelper.stopLoading();
 	}
 
-	private render = async () => {
+	private render = () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		document.title = WebcompHelper.getDocumentTitleFormatted("Favorit");
 
 		this.setupProperties();
-		await this.initRestaurantList();
+		this.initRestaurantList();
 	}
 
 	private setupProperties = () => {
@@ -47,7 +47,7 @@ export class FavoritePage extends HTMLElement {
 		this.restaurantList = this.selector("restaurant-list")[0] as RestaurantList;
 	}
 
-	private initRestaurantList = async () => {
+	private initRestaurantList = () => {
 		this.restaurantList.setRestaurantData =
 			WebcompHelper.convertRestaurantData(this.restaurantData);
 	}

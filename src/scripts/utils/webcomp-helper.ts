@@ -29,8 +29,8 @@ export class WebcompHelper {
 	static scrollTo = ({ btnId, toId, selector = $ }:
 		{btnId: string, toId: string, selector: any}) => {
 		selector(btnId).on("click", () => {
-			const toEl = selector(toId);
-			toEl[0].scrollIntoView();
+			const toEl = selector(toId)[0];
+			toEl.scrollIntoView();
 			toEl.focus();
 
 			// Scroll a little bit before the element to account for navbar
@@ -44,7 +44,7 @@ export class WebcompHelper {
 
 	// Return Attr Object
 	static getAttribute = (attribute: string, attributeLists: Array<Attr>) => {
-		let returnValue: any = null;
+		let returnValue;
 
 		attributeLists.forEach((attr: Attr) => {
 			if (attr.name === attribute) returnValue = attr;

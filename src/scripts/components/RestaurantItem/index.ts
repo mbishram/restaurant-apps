@@ -2,6 +2,7 @@ import $ from "jquery";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Restaurant } from "@scripts/entities/restaurant";
 import { CONFIGS } from "@scripts/constants/configs";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -35,13 +36,13 @@ export class RestaurantItem extends HTMLElement {
 	private selector: Function = () => {}
 
 	private restaurant: Restaurant = new Restaurant()
-	private article: any
-	private img: any
-	private section: any
-	private heading: any
-	private location: any
-	private rating: any
-	private description: any
+	private article!: jQuery
+	private img!: jQuery
+	private section!: jQuery
+	private heading!: jQuery
+	private location!: jQuery
+	private rating!: jQuery
+	private description!: jQuery
 
 	constructor() {
 		super();

@@ -5,20 +5,24 @@ import { MissingPage } from "@views/MissingPage";
 import { NavigationLink } from "@components/NavigationLink";
 
 export class App {
+	private static prevRoute: string
 	private static prevSelectedNavId: string
 
 	static renderPage = () => {
 		const link = RouterHelper.getLinkFormatted;
-		const { hash } = RouterHelper.getLink;
+		const { hash, resource } = RouterHelper.getLink;
 		const ClassReference = ROUTES[link as keyof IRoutes]?.ClassReference || MissingPage;
 		const selectedNavId = ROUTES[link as keyof IRoutes]?.selectedNavId;
 
-		$("main").html(new ClassReference());
+		// Do not append new view if it's the same route.
+		// Usually it's on hash to link
+		if (App.prevRoute !== resource) $("main").html(new ClassReference());
 		App.setSkipToContentLink();
 		App.markSelectedNavLink(selectedNavId);
 		App.removePrevSelectedNavLink(selectedNavId);
 		// It will only scroll to top if it's not "link to hash"
 		if (!hash) $(window).scrollTop(0);
+		App.prevRoute = resource;
 	}
 
 	private static markSelectedNavLink = (selectedNavId: string) => {

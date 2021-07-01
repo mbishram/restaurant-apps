@@ -1,5 +1,6 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Menu } from "@scripts/entities/menu";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -12,7 +13,7 @@ export class MenuItem extends HTMLElement {
 	private selector: Function = () => {}
 
 	private menu: Menu = new Menu()
-	private paragraph: any
+	private paragraph!: jQuery
 
 	constructor() {
 		super();

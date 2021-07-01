@@ -1,6 +1,7 @@
 import $ from "jquery";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Footer } from "@components/Footer";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -31,10 +32,10 @@ const template = WebcompHelper.createTemplate(`
 export class Navigation extends HTMLElement {
 	private selector: Function = () => {};
 
-	private logo: any;
-	private nav: any;
-	private navBtn: any;
-	private navBtnIcon: any;
+	private logo!: jQuery;
+	private nav!: jQuery;
+	private navBtn!: jQuery;
+	private navBtnIcon!: jQuery;
 
 	constructor() {
 		super();
@@ -86,7 +87,7 @@ export class Navigation extends HTMLElement {
 
 	private clearEventListener = () => {
 		this.logo.off("click", this.closeNav);
-		this.navBtn.off("click", this.handleNav);
+		this.navBtn.off("click");
 		this.nav.off("click");
 		$(window).off("resize", this.handleNavSpacing);
 	}

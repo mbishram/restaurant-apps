@@ -2,6 +2,7 @@ import $ from "jquery";
 import _ from "lodash";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Navigation } from "@components/Navigation";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -11,7 +12,7 @@ const template = WebcompHelper.createTemplate(`
 export class NavigationLink extends HTMLElement {
 	private selector: Function = () => {};
 
-	private link: any;
+	private link!: jQuery;
 
 	private attributeLists: Array<Attr> = []
 

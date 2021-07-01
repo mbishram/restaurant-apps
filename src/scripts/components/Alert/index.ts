@@ -2,6 +2,7 @@ import $ from "jquery";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Alert } from "@scripts/entities/alert";
 import { Footer } from "@components/Footer";
+import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -14,7 +15,7 @@ export class CustomAlert extends HTMLElement {
 	private alertData: Alert = new Alert()
 	private timeout!: ReturnType<typeof setTimeout>
 
-	private paragraph: any
+	private paragraph!: jQuery
 
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
