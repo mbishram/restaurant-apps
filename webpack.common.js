@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
+const { GenerateSW } = require("workbox-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -86,7 +87,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, "src/templates/index.html"),
+			template: path.resolve(__dirname, "./src/templates/index.html"),
 			filename: "index.html",
 			favicon: "src/public/favicon.ico",
 			meta: {
@@ -97,8 +98,8 @@ module.exports = {
 		new CopyWebpackPlugin({
 			patterns: [
 				{
-					from: path.resolve(__dirname, "src/public/copy"),
-					to: path.resolve(__dirname, "dist/images"),
+					from: path.resolve(__dirname, "./src/public/copy"),
+					to: path.resolve(__dirname, "./dist/images"),
 				},
 			],
 		}),
@@ -115,13 +116,35 @@ module.exports = {
 			background_color: "#ffffff",
 			icons: [
 				{
-					src: path.resolve("src/public/images/logo.png"),
+					src: path.resolve("./src/public/images/logo.png"),
 					sizes: [72, 96, 128, 144, 152, 192, 256, 384, 512],
 					purpose: "any maskable",
 				},
 			],
 			inject: true,
 			publicPath: "./",
+		}),
+		new GenerateSW({
+			swDest: "./sw.js",
+			runtimeCaching: [{
+				urlPattern: /\/#.+$/,
+				handler: "StaleWhileRevalidate",
+				options: {
+					cacheName: "markup",
+				},
+			},
+			{
+				urlPattern: /https:\/\/restaurant-api\.dicoding\.dev\/.+/,
+				handler: "NetworkFirst",
+				options: {
+					cacheName: "restaurant-api",
+					expiration: {
+						maxAgeSeconds: 60 * 60,
+					},
+				},
+
+			},
+			],
 		}),
 		new CleanWebpackPlugin(),
 	],

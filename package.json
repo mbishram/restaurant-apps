@@ -17,6 +17,7 @@
 		"@babel/preset-env": "^7.10.4",
 		"@types/jquery": "^3.5.5",
 		"@types/lodash": "^4.14.170",
+		"@types/service_worker_api": "^0.0.9",
 		"@typescript-eslint/eslint-plugin": "^4.27.0",
 		"@typescript-eslint/parser": "^4.27.0",
 		"@webcomponents/webcomponentsjs": "^2.5.0",
@@ -52,7 +53,8 @@
 		"webpack-dev-server": "^3.11.0",
 		"webpack-merge": "^5.0.9",
 		"webpack-pwa-manifest": "^4.3.0",
-		"whatwg-fetch": "^3.2.0"
+		"whatwg-fetch": "^3.2.0",
+		"workbox-webpack-plugin": "^6.1.5"
 	},
 	"dependencies": {
 		"@fontsource/manrope": "^4.2.2",

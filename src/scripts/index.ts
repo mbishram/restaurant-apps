@@ -20,9 +20,11 @@ import "@components/ReviewList";
 import "@components/FavoriteButton";
 import "@components/Loader";
 import "@components/Alert";
+import { SWHelper } from "@utils/sw-helper";
 
 $(window).on("load", () => {
 	App.renderPage();
+	SWHelper.registerSW();
 });
 
 $(window).on("hashchange", () => {
