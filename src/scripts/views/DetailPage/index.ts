@@ -191,6 +191,9 @@ export class DetailPage extends HTMLElement {
 
 	private formatKategori = () => {
 		const dataKategori = WebcompHelper.convertKategoriData(this.detailData.categories);
+		if (_.isEmpty(dataKategori)) {
+			return "Kategori Kosong";
+		}
 		return dataKategori.map((kategori) =>
 			kategori.name).join(", ");
 	}
