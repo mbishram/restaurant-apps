@@ -23,12 +23,9 @@ export class FavoritePage extends HTMLElement {
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
 
-		WebcompHelper.startLoading();
-
 		// TODO: Get it from DB
 		this.restaurantData = await FetchData.restaurantList();
 		this.render();
-
 		WebcompHelper.stopLoading();
 	}
 

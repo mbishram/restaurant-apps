@@ -99,13 +99,10 @@ export class DetailPage extends HTMLElement {
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
 
-		WebcompHelper.startLoading();
-
 		const data =
 			await FetchData.restaurantDetail(RouterHelper.getLink.id);
 		this.detailData = new Restaurant(data);
 		this.render();
-
 		WebcompHelper.stopLoading();
 	}
 

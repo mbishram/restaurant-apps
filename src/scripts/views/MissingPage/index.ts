@@ -23,7 +23,9 @@ export class MissingPage extends HTMLElement {
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+
 		this.render();
+		WebcompHelper.stopLoading();
 	}
 
 	private render = () => {

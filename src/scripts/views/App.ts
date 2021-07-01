@@ -3,6 +3,7 @@ import { RouterHelper } from "@utils/routes-helper";
 import { IRoutes, ROUTES } from "@scripts/constants/routes";
 import { MissingPage } from "@views/MissingPage";
 import { NavigationLink } from "@components/NavigationLink";
+import { WebcompHelper } from "@utils/webcomp-helper";
 
 export class App {
 	private static prevRoute: string
@@ -16,12 +17,17 @@ export class App {
 
 		// Do not append new view if it's the same route.
 		// Usually it's on hash to link
-		if (App.prevRoute !== resource) $("main").html(new ClassReference());
-		App.setSkipToContentLink();
-		App.markSelectedNavLink(selectedNavId);
-		App.removePrevSelectedNavLink(selectedNavId);
-		// It will only scroll to top if it's not "link to hash"
-		if (!hash) $(window).scrollTop(0);
+		if (App.prevRoute !== resource) {
+			WebcompHelper.startLoading();
+
+			$("main").html(new ClassReference());
+			App.setSkipToContentLink();
+			App.markSelectedNavLink(selectedNavId);
+			App.removePrevSelectedNavLink(selectedNavId);
+			// It will only scroll to top if it's not "link to hash"
+			if (!hash) $(window).scrollTop(0);
+		}
+
 		App.prevRoute = resource;
 	}
 
