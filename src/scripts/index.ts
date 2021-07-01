@@ -12,6 +12,7 @@ import { App } from "@views/App";
 import "@components/Navigation";
 import "@components/NavigationLink";
 import "@components/Footer";
+
 import "@components/PageSection";
 import "@components/RestaurantList";
 import "@components/MenuList";

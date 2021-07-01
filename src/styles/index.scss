@@ -7,5 +7,7 @@ body {
 
     main {
         flex-grow: 1;
+        display: grid;
+        align-content: center;
     }
 }

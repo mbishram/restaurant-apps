@@ -207,6 +207,7 @@ export class DetailPage extends HTMLElement {
 			return;
 		}
 
+		WebcompHelper.startLoading();
 		const reviewData =
 			await FetchData.createReview(
 				{
@@ -215,6 +216,7 @@ export class DetailPage extends HTMLElement {
 					review: String(this.reviewFormDesc.val()),
 				},
 			);
+		WebcompHelper.stopLoading();
 
 		if (_.isEmpty(reviewData)) {
 			return;
