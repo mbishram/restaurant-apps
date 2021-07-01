@@ -19,10 +19,10 @@ export class Restaurant {
 		restaurant?: Restaurant,
 	) {
 		this.id = restaurant?.id || "";
-		this.name = WebcompHelper.convertTitleCase(restaurant?.name || "");
-		this.description = restaurant?.description || "";
-		this.city = restaurant?.city || "";
-		this.address = restaurant?.address || "";
+		this.name = WebcompHelper.convertTitleCase(restaurant?.name || "Restoran Tidak Ditemukan");
+		this.description = restaurant?.description || "Deskripsi restoran tidak ditemukan.";
+		this.city = restaurant?.city || "Kota";
+		this.address = restaurant?.address || "Alamat Jl. No 1";
 		this.pictureId = restaurant?.pictureId || "";
 		this.categories = restaurant?.categories || [];
 		this.menus = restaurant?.menus || { foods: [], drinks: [] };
