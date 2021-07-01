@@ -2,6 +2,7 @@ import * as $ from "jquery";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Restaurant } from "@scripts/entities/restaurant";
 import { jQuery } from "@typings/global";
+import { DBFavoriteData } from "@scripts/data/dbfavorite-data";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -50,16 +51,11 @@ export class FavoriteButton extends HTMLElement {
 	}
 
 	private setupElement = () => {
-		if (this.restaurantData.name) {
+		if (this.isFavorite) {
 			this.setAttribute("aria-label", "Hapus dari favorit");
 			this.icon.removeClass("bi-heart");
 			this.icon.addClass("bi-heart-fill");
-			this.isFavorite = true;
-
-			return;
 		}
-
-		this.isFavorite = false;
 	}
 
 	private setupEventListener = () => {
@@ -70,29 +66,32 @@ export class FavoriteButton extends HTMLElement {
 		$(this).off("click", this.handleOnClick);
 	}
 
-	private handleOnClick = () => {
+	private handleOnClick = async () => {
 		this.icon.toggleClass("bi-heart bi-heart-fill");
 		this.isFavorite = !this.isFavorite;
+		WebcompHelper.startLoading();
 
 		if (this.isFavorite) {
 			this.setAttribute("aria-label", "Hapus dari favorit");
-			this.addToFavorite();
+			await this.addToFavorite();
 
 			return;
 		}
 
 		this.setAttribute("aria-label", "Tambah ke favorit");
-		this.removeFromFavorite();
+		await this.removeFromFavorite();
 	}
 
-	private addToFavorite = () => {
-		// TODO: Add to DB
-		console.log("Added to Favorite");
+	private addToFavorite = async () => {
+		await DBFavoriteData.putRestaurant(this.restaurantData);
+
+		WebcompHelper.stopLoading();
 	}
 
-	private removeFromFavorite = () => {
-		// TODO: Remove from DB
-		console.log("Removed from Favorite");
+	private removeFromFavorite = async () => {
+		await DBFavoriteData.deleteRestaurant(this.restaurantData.id);
+
+		WebcompHelper.stopLoading();
 	}
 
 	rerender = () => {
@@ -101,6 +100,10 @@ export class FavoriteButton extends HTMLElement {
 		}
 		this.clearEventListener();
 		this.render();
+	}
+
+	set setIsFavorite(isFavorite: boolean) {
+		this.isFavorite = isFavorite;
 	}
 
 	set setRestaurantData(data: Restaurant) {

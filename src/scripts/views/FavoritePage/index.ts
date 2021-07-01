@@ -1,6 +1,6 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { RestaurantList } from "@components/RestaurantList";
-import { FetchData } from "@scripts/data/fetch-data";
+import { DBFavoriteData } from "@scripts/data/dbfavorite-data";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -23,8 +23,7 @@ export class FavoritePage extends HTMLElement {
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
 
-		// TODO: Get it from DB
-		this.restaurantData = await FetchData.restaurantList();
+		this.restaurantData = await DBFavoriteData.getAllRestaurant();
 		this.render();
 		WebcompHelper.stopLoading();
 	}

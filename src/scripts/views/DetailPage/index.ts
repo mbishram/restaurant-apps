@@ -11,6 +11,7 @@ import { ALERT_TYPES } from "@scripts/constants/alert-types";
 import { CustomAlert } from "@components/Alert";
 import { AlertHelper } from "@utils/alert-helper";
 import { jQuery } from "@typings/global";
+import { DBFavoriteData } from "@scripts/data/dbfavorite-data";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -78,6 +79,7 @@ export class DetailPage extends HTMLElement {
 	private selector: Function = () => {}
 
 	private detailData: Restaurant = new Restaurant()
+	private favoriteData: Restaurant = new Restaurant()
 
 	private header!: jQuery
 	private img!: jQuery
@@ -102,6 +104,8 @@ export class DetailPage extends HTMLElement {
 		const data =
 			await FetchData.restaurantDetail(RouterHelper.getLink.id);
 		this.detailData = new Restaurant(data);
+		const favoriteData = await DBFavoriteData.getRestaurant(this.detailData.id);
+		this.favoriteData = new Restaurant(favoriteData);
 		this.render();
 		WebcompHelper.stopLoading();
 	}
@@ -185,7 +189,7 @@ export class DetailPage extends HTMLElement {
 	}
 
 	private initFavoriteButton = () => {
-		// TODO: Make it search for favorite from DB
+		this.favoriteButton.setIsFavorite = Boolean(this.favoriteData.pictureId);
 		this.favoriteButton.setRestaurantData = this.detailData;
 	}
 
