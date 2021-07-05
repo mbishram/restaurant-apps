@@ -15,13 +15,11 @@ const template = WebcompHelper.createTemplate(`
 	</button>
 	<nav>
 		<h1 aria-label="yelping you pick a restaurant.">
-			<a href="#">
-				<!--suppress HtmlUnknownTarget -->
-				<img
-					src="./images/yelping-logo.svg"
-					alt="logo yelping you pick a restaurant."
-				/>
-			</a>
+			<!--suppress HtmlUnknownTarget -->
+			<img
+				src="./images/yelping-logo.svg"
+				alt="logo yelping you pick a restaurant."
+			/>
 		</h1>
 		<ul>
 			<slot></slot>

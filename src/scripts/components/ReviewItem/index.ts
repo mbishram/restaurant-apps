@@ -4,7 +4,7 @@ import { jQuery } from "@typings/global";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
-	<article aria-labelledby="heading" class="card border-radius-sm p-sm">
+	<article class="card border-radius-sm p-sm">
 		<p><b id="nama">Nama Pengulas</b></p>
 		<p id="tanggal" class="text-sm text-gray-3">01 Desember 2000</p>
 		<p id="deskripsi" class="mt-xs">
@@ -19,6 +19,7 @@ export class ReviewItem extends HTMLElement {
 	private selector: Function = () => {}
 
 	private review: Review = new Review()
+	private article!: jQuery
 	private deskripsi!: jQuery
 	private nama!: jQuery
 	private tanggal!: jQuery
@@ -45,12 +46,14 @@ export class ReviewItem extends HTMLElement {
 	private setupProperties = () => {
 		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
 
+		this.article = this.selector("article");
 		this.deskripsi = this.selector("#deskripsi");
 		this.nama = this.selector("#nama");
 		this.tanggal = this.selector("#tanggal");
 	}
 
 	private setupElement = () => {
+		this.article.attr("aria-label", `ulasan dari ${this.review.name}`);
 		this.deskripsi.text(this.review.review);
 		this.nama.text(this.review.name);
 		this.tanggal.text(this.review.date);

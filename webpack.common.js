@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -89,11 +90,16 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "./src/templates/index.html"),
 			filename: "index.html",
-			favicon: "src/public/favicon.ico",
 			meta: {
 				viewport: "width=device-width, initial-scale=1.0",
 				description: "Restaurant listing website for dicoding submission.",
 			},
+		}),
+		// FaviconsWebpackPlugin won't generate the full list of favicon on development.
+		// It will generate it on production.
+		new FaviconsWebpackPlugin({
+			logo: "./src/public/images/logo.png",
+			inject: true,
 		}),
 		new CopyWebpackPlugin({
 			patterns: [
