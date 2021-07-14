@@ -75,37 +75,29 @@ export class FavoriteButton extends HTMLElement {
 		if (this.isFavorite) {
 			this.setAttribute("aria-label", "Hapus dari favorit");
 			await this.addToFavorite();
-
-			return;
+		} else {
+			this.setAttribute("aria-label", "Tambah ke favorit");
+			await this.removeFromFavorite();
 		}
 
-		this.setAttribute("aria-label", "Tambah ke favorit");
-		await this.removeFromFavorite();
+		WebcompHelper.stopLoading();
 	}
 
 	private addToFavorite = async () => {
 		await DBFavoriteData.putRestaurant(this.restaurantData);
-
-		WebcompHelper.stopLoading();
 	}
 
 	private removeFromFavorite = async () => {
 		await DBFavoriteData.deleteRestaurant(this.restaurantData.id);
-
-		WebcompHelper.stopLoading();
 	}
 
 	rerender = async () => {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
-		this.setIsFavorite = await DBFavoriteData.getRestaurant(this.restaurantData.id);
+		this.isFavorite = await DBFavoriteData.getRestaurant(this.restaurantData.id);
 		this.clearEventListener();
 		this.render();
-	}
-
-	set setIsFavorite(isFavorite: boolean) {
-		this.isFavorite = isFavorite;
 	}
 
 	set setRestaurantData(data: Restaurant) {

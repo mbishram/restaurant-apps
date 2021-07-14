@@ -1,19 +1,10 @@
-import { FavoriteButton } from "@components/FavoriteButton";
 import { Restaurant } from "@scripts/entities/restaurant";
 import { DBFavoriteData } from "@scripts/data/dbfavorite-data";
 import { TestFactories } from "./helpers/test-factories";
 
 describe("Favorite a restaurant", async () => {
-	const setupFavoriteButton = (restaurant: Restaurant) => {
-		const favoriteButton = new FavoriteButton();
-		favoriteButton.setRestaurantData = new Restaurant(restaurant);
-
-		TestFactories.createFavoriteButtonEmptyState();
-		document.body.appendChild(favoriteButton);
-	};
-
 	beforeEach(() => {
-		setupFavoriteButton({ id: "1" } as Restaurant);
+		TestFactories.setupFavoriteButton({ id: "1" } as Restaurant);
 	});
 
 	it("should show favorite button when restaurant is not on favorite list", () => {
