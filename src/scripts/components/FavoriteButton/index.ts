@@ -10,7 +10,8 @@ const template = WebcompHelper.createTemplate(`
 `);
 
 export class FavoriteButton extends HTMLElement {
-	private selector: Function = () => {}
+	private selector: Function = () => {
+	}
 
 	private restaurantData: Restaurant = new Restaurant()
 	private isFavorite: boolean = false

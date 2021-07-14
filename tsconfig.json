@@ -1,4 +1,5 @@
 {
+	"compileOnSave": true,
 	"compilerOptions": {
         "baseUrl": "./src",
 		"noImplicitAny": true,
@@ -8,6 +9,7 @@
 		"allowJs": true,
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
+		"sourceMap": true,
 		"allowSyntheticDefaultImports": true,
         "paths": {
             "@/*": ["./*"],

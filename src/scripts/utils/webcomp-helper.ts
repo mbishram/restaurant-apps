@@ -27,7 +27,7 @@ export class WebcompHelper {
 
 	// Mimic native "link to hash" on shadow dom
 	static scrollTo = ({ btnId, toId, selector = $ }:
-		{btnId: string, toId: string, selector: any}) => {
+		{ btnId: string, toId: string, selector: any }) => {
 		selector(btnId).on("click", () => {
 			const toEl = selector(toId)[0];
 			toEl.scrollIntoView();
@@ -39,7 +39,7 @@ export class WebcompHelper {
 		});
 	}
 
-	static getDocumentTitleFormatted = (currentPage: string = "") =>
+	static getDocumentTitleFormatted = (currentPage?: string) =>
 		`${currentPage && `${currentPage} | `}YELPing you find a restaurant.`
 
 	// Return Attr Object
