@@ -95,10 +95,11 @@ export class FavoriteButton extends HTMLElement {
 		WebcompHelper.stopLoading();
 	}
 
-	rerender = () => {
+	rerender = async () => {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
+		this.setIsFavorite = await DBFavoriteData.getRestaurant(this.restaurantData.id);
 		this.clearEventListener();
 		this.render();
 	}
@@ -109,7 +110,7 @@ export class FavoriteButton extends HTMLElement {
 
 	set setRestaurantData(data: Restaurant) {
 		this.restaurantData = data;
-		this.rerender();
+		this.rerender().then();
 	}
 }
 

@@ -3,6 +3,6 @@ import "regenerator-runtime";
 // To fix web component transpile issue with es5
 import "@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js";
 
-import { Loader } from "@components/Loader";
+import { TestFactories } from "./test-factories";
 
-document.body.appendChild(new Loader());
+TestFactories.createFavoriteButtonEmptyState();
