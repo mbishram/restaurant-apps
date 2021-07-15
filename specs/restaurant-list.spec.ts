@@ -23,10 +23,9 @@ describe("Restaurant list", () => {
 			TestFactories.setupRestaurantList(arrayRestaurant);
 
 			UtilsHelper.getRootWebComponent("restaurant-list")?.querySelectorAll("restaurant-item")
-				.forEach((restaurantItem, index) => {
+				.forEach((restaurantItem, index) =>
 					expect(restaurantItem.shadowRoot?.querySelector("#heading>a")?.innerHTML)
-						.toEqual(arrayRestaurant[index].name);
-				});
+						.toEqual(arrayRestaurant[index].name));
 		});
 	});
 });

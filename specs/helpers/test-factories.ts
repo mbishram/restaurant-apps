@@ -2,6 +2,8 @@ import { Loader } from "@components/Loader";
 import { Restaurant } from "@scripts/entities/restaurant";
 import { FavoriteButton } from "@components/FavoriteButton";
 import { RestaurantList } from "@components/RestaurantList";
+import { Menu } from "@scripts/entities/menu";
+import { MenuList } from "@components/MenuList";
 
 export class TestFactories {
 	private static createEmptyState = () => {
@@ -24,5 +26,13 @@ export class TestFactories {
 		const restaurantList = new RestaurantList();
 		restaurantList.setRestaurantData = restaurantArray;
 		document.body.appendChild(restaurantList);
+	};
+
+	static setupMenuList = async (menuArray: Array<Menu>) => {
+		TestFactories.createEmptyState();
+
+		const menuList = new MenuList();
+		menuList.setMenuData = menuArray;
+		document.body.appendChild(menuList);
 	};
 }
