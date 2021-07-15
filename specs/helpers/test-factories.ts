@@ -9,11 +9,11 @@ export class TestFactories {
 		document.body.appendChild(new Loader());
 	}
 
-	static setupFavoriteButton = (restaurant: Restaurant) => {
+	static setupFavoriteButton = async (restaurant: Restaurant) => {
 		TestFactories.createFavoriteButtonEmptyState();
 
 		const favoriteButton = new FavoriteButton();
-		favoriteButton.setRestaurantData = new Restaurant(restaurant);
+		await favoriteButton.setRestaurantData(new Restaurant(restaurant));
 		document.body.appendChild(favoriteButton);
 	};
 }

@@ -29,7 +29,7 @@ export class FavoriteButton extends HTMLElement {
 	// noinspection JSUnusedLocalSymbols
 	private connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
-		this.render();
+		this.render().then();
 	}
 
 	// noinspection JSUnusedLocalSymbols
@@ -37,18 +37,20 @@ export class FavoriteButton extends HTMLElement {
 		this.clearEventListener();
 	}
 
-	private render = () => {
+	private render = async () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
-		this.setupProperties();
+		await this.setupProperties();
 		this.setupElement();
 		this.setupEventListener();
 	}
 
-	private setupProperties = () => {
+	private setupProperties = async () => {
 		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
 
 		this.icon = this.selector("i");
+
+		this.isFavorite = Boolean(await DBFavoriteData.getRestaurant(this.restaurantData.id));
 	}
 
 	private setupElement = () => {
@@ -92,17 +94,18 @@ export class FavoriteButton extends HTMLElement {
 	}
 
 	rerender = async () => {
+		WebcompHelper.startLoading();
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
-		this.isFavorite = await DBFavoriteData.getRestaurant(this.restaurantData.id);
 		this.clearEventListener();
-		this.render();
+		await this.render();
+		WebcompHelper.stopLoading();
 	}
 
-	set setRestaurantData(data: Restaurant) {
+	setRestaurantData = async (data: Restaurant) => {
 		this.restaurantData = data;
-		this.rerender().then();
+		await this.rerender();
 	}
 }
 

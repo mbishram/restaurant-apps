@@ -106,7 +106,7 @@ export class DetailPage extends HTMLElement {
 		this.detailData = new Restaurant(data);
 		const favoriteData = await DBFavoriteData.getRestaurant(this.detailData.id);
 		this.favoriteData = new Restaurant(favoriteData);
-		this.render();
+		await this.render();
 		WebcompHelper.stopLoading();
 	}
 
@@ -115,7 +115,7 @@ export class DetailPage extends HTMLElement {
 		this.clearEventListener();
 	}
 
-	private render = () => {
+	private render = async () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
 		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		document.title =
@@ -128,7 +128,7 @@ export class DetailPage extends HTMLElement {
 		this.setupDescription();
 		this.initMenuList();
 		this.initReviewList();
-		this.initFavoriteButton();
+		await this.initFavoriteButton();
 	}
 
 	private setupProperties = () => {
@@ -188,9 +188,8 @@ export class DetailPage extends HTMLElement {
 			WebcompHelper.convertReviewData(this.detailData.customerReviews);
 	}
 
-	private initFavoriteButton = () => {
-		this.favoriteButton.setIsFavorite = Boolean(this.favoriteData.pictureId);
-		this.favoriteButton.setRestaurantData = this.detailData;
+	private initFavoriteButton = async () => {
+		await this.favoriteButton.setRestaurantData(this.detailData);
 	}
 
 	private formatKategori = () => {
@@ -227,7 +226,7 @@ export class DetailPage extends HTMLElement {
 		}
 
 		this.resetReviewForm();
-		this.refreshReviewData(reviewData);
+		await this.refreshReviewData(reviewData);
 	}
 
 	private resetReviewForm = () => {
@@ -235,18 +234,18 @@ export class DetailPage extends HTMLElement {
 		this.reviewFormDesc.val("");
 	}
 
-	private refreshReviewData = (data: Array<object>) => {
+	private refreshReviewData = async (data: Array<object>) => {
 		this.detailData.customerReviews =
 			WebcompHelper.convertReviewData(data);
-		this.rerender();
+		await this.rerender();
 	}
 
-rerender = () => {
-	while (this.shadowRoot?.firstChild) {
-		this.shadowRoot?.firstChild.remove();
+	rerender = async () => {
+		while (this.shadowRoot?.firstChild) {
+			this.shadowRoot?.firstChild.remove();
+		}
+		await this.render();
 	}
-	this.render();
-}
 }
 
 window.customElements.define("detail-page", DetailPage);

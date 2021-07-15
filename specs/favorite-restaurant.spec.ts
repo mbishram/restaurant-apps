@@ -3,8 +3,8 @@ import { DBFavoriteData } from "@scripts/data/dbfavorite-data";
 import { TestFactories } from "./helpers/test-factories";
 
 describe("Favorite a restaurant", async () => {
-	beforeEach(() => {
-		TestFactories.setupFavoriteButton({ id: "1" } as Restaurant);
+	beforeEach(async () => {
+		await TestFactories.setupFavoriteButton({ id: "1" } as Restaurant);
 	});
 
 	it("should show favorite button when restaurant is not on favorite list", () => {
@@ -29,10 +29,10 @@ describe("Favorite a restaurant", async () => {
 	it("should not add restaurant if it's already on favorite list", async () => {
 		await DBFavoriteData.putRestaurant(new Restaurant({ id: "1" } as Restaurant));
 
+		expect((await DBFavoriteData.getAllRestaurant()).length).toEqual(1);
 		document.querySelector("favorite-button")?.dispatchEvent(new Event("click"));
 
-		const allFavoriteRestaurant = await DBFavoriteData.getAllRestaurant();
-		expect(allFavoriteRestaurant.length).toEqual(1);
+		expect((await DBFavoriteData.getAllRestaurant()).length).toBeLessThanOrEqual(1);
 
 		await DBFavoriteData.deleteRestaurant("1");
 	});
