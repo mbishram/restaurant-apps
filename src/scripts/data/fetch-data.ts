@@ -28,11 +28,11 @@ export class FetchData {
 			return responseJSON.restaurant;
 		} catch (error) {
 			AlertHelper.createAlert(ALERT_TYPES.ERROR, "Restoran gagal diambil! Coba periksa koneksi internet Anda.");
-			return [];
+			return {};
 		}
 	}
 
-	static createReview = async (data: {id: string, name: string, review: string}) => {
+	static createReview = async (data: { id: string, name: string, review: string }) => {
 		try {
 			const response = await fetch(ENDPOINTS.REVIEW, {
 				method: "POST",
@@ -55,7 +55,7 @@ export class FetchData {
 	}
 
 	private static checkError = (responseJSON:
-		{customerReviews: Array<object>, error: boolean, message: string}) => {
+		{ customerReviews: Array<object>, error: boolean, message: string }) => {
 		if (responseJSON.error) throw responseJSON.message;
 	}
 }

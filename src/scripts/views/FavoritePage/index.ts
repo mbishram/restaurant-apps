@@ -13,7 +13,8 @@ const template = WebcompHelper.createTemplate(`
 `);
 
 export class FavoritePage extends HTMLElement {
-	private selector: Function = () => {}
+	private selector: Function = () => {
+	}
 
 	private restaurantData: Array<object> = []
 
