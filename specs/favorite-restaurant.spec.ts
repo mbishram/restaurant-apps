@@ -32,8 +32,10 @@ describe("Favorite a restaurant", async () => {
 		expect((await DBFavoriteData.getAllRestaurant()).length).toEqual(1);
 		document.querySelector("favorite-button")?.dispatchEvent(new Event("click"));
 
-		expect((await DBFavoriteData.getAllRestaurant()).length).toBeLessThanOrEqual(1);
+		expect((await DBFavoriteData.getAllRestaurant()).length).toEqual(1);
 
 		await DBFavoriteData.deleteRestaurant("1");
 	});
+
+	// I didn't check for id because I have restaurant entities to handle it
 });

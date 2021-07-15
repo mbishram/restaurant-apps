@@ -152,6 +152,8 @@ export class DetailPage extends HTMLElement {
 	}
 
 	private setupEventListener = () => {
+		this.clearEventListener();
+
 		this.reviewForm.on("submit", this.handleSubmitReview);
 	}
 

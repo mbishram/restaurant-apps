@@ -71,6 +71,8 @@ export class Navigation extends HTMLElement {
 	}
 
 	private setupEventListener = () => {
+		this.clearEventListener();
+
 		// Setup navigation button on mobile
 		this.logo.on("click", this.closeNav);
 		this.navBtn.on("click", this.handleNav);
@@ -128,7 +130,6 @@ export class Navigation extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
-		this.clearEventListener();
 		this.render();
 	}
 }

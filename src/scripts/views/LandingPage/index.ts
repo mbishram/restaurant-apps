@@ -89,6 +89,8 @@ export class LandingPage extends HTMLElement {
 	}
 
 	private setupEventListener = () => {
+		this.clearEventListener();
+
 		WebcompHelper.scrollTo({ btnId: "#to-restaurant-btn", toId: "#restaurant-list", selector: this.selector });
 	}
 
@@ -105,7 +107,6 @@ export class LandingPage extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
-		this.clearEventListener();
 		this.render();
 	}
 }

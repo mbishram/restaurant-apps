@@ -113,6 +113,8 @@ export class RestaurantItem extends HTMLElement {
 	}
 
 	private setupEventListener = () => {
+		this.clearEventListener();
+
 		$(window).on("resize", this.fixElementHeight);
 	}
 
@@ -129,7 +131,6 @@ export class RestaurantItem extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
-		this.clearEventListener();
 		this.render();
 	}
 }

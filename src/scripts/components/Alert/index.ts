@@ -47,6 +47,8 @@ export class CustomAlert extends HTMLElement {
 	}
 
 	private setupEventListener = () => {
+		this.clearEventListener();
+
 		$(window).on("resize", this.setSpacing);
 	}
 

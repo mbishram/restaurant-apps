@@ -27,9 +27,9 @@ export class FavoriteButton extends HTMLElement {
 	}
 
 	// noinspection JSUnusedLocalSymbols
-	private connectedCallback() {
+	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
-		this.render().then();
+		await this.render();
 	}
 
 	// noinspection JSUnusedLocalSymbols
@@ -62,6 +62,8 @@ export class FavoriteButton extends HTMLElement {
 	}
 
 	private setupEventListener = () => {
+		this.clearEventListener();
+
 		$(this).on("click", this.handleOnClick);
 	}
 
@@ -98,7 +100,6 @@ export class FavoriteButton extends HTMLElement {
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
-		this.clearEventListener();
 		await this.render();
 		WebcompHelper.stopLoading();
 	}
