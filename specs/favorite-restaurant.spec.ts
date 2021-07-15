@@ -20,8 +20,7 @@ describe("Favorite a restaurant", async () => {
 	it("should add restaurant to favorite list when favorite button is clicked", async () => {
 		document.querySelector("favorite-button")?.dispatchEvent(new Event("click"));
 
-		const favoriteRestaurant = await DBFavoriteData.getRestaurant("1");
-		expect(favoriteRestaurant.id).toEqual("1");
+		expect((await DBFavoriteData.getRestaurant("1"))?.id).toEqual("1");
 
 		await DBFavoriteData.deleteRestaurant("1");
 	});
