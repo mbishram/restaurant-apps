@@ -4,6 +4,8 @@ import { FavoriteButton } from "@components/FavoriteButton";
 import { RestaurantList } from "@components/RestaurantList";
 import { Menu } from "@scripts/entities/menu";
 import { MenuList } from "@components/MenuList";
+import { ReviewList } from "@components/ReviewList";
+import { Review } from "@scripts/entities/review";
 
 export class TestFactories {
 	private static createEmptyState = () => {
@@ -34,5 +36,13 @@ export class TestFactories {
 		const menuList = new MenuList();
 		menuList.setMenuData = menuArray;
 		document.body.appendChild(menuList);
+	};
+
+	static setupReviewList = async (reviewArray: Array<Review>) => {
+		TestFactories.createEmptyState();
+
+		const reviewList = new ReviewList();
+		reviewList.setReviewData = reviewArray;
+		document.body.appendChild(reviewList);
 	};
 }
