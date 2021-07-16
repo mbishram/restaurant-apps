@@ -8,7 +8,7 @@
 		"build": "webpack --config webpack.prod.js",
 		"deploy": "gh-pages -d dist",
 		"test": "karma start",
-		"e2e": "concurrently --kill-others \"webpack-dev-server --config webpack.dev.js\" \"playwright test --headed\""
+		"e2e": "concurrently --kill-others \"webpack-dev-server --config webpack.dev.js\" \"playwright test\""
 	},
 	"keywords": [],
 	"author": "your_name <your.email@domain.com>",
@@ -20,6 +20,7 @@
 		"@types/jasmine": "^3.8.1",
 		"@types/jquery": "^3.5.5",
 		"@types/lodash": "^4.14.170",
+		"@types/randomstring": "^1.1.7",
 		"@typescript-eslint/eslint-plugin": "^4.27.0",
 		"@typescript-eslint/parser": "^4.27.0",
 		"@webcomponents/webcomponentsjs": "^2.5.0",
@@ -46,6 +47,7 @@
 		"mini-css-extract-plugin": "^1.6.0",
 		"playwright": "^1.12.3",
 		"prettier": "^2.2.1",
+		"randomstring": "^1.2.1",
 		"sass": "^1.32.12",
 		"sass-loader": "^11.0.1",
 		"style-loader": "^1.2.1",
