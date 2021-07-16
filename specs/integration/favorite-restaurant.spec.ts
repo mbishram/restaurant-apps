@@ -1,6 +1,6 @@
 import { Restaurant } from "@scripts/entities/restaurant";
 import { DBFavoriteData } from "@scripts/data/dbfavorite-data";
-import { TestFactories } from "./helpers/test-factories";
+import { TestFactories } from "../helpers/test-factories";
 
 describe("Favorite a restaurant", async () => {
 	beforeEach(async () => {

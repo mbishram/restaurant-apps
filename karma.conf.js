@@ -16,7 +16,7 @@ module.exports = function (config) {
 		// list of files / patterns to load in the browser
 		files: [
 			"specs/helpers/setup-helper.ts",
-			"specs/**/*.spec.ts",
+			"specs/integration/**/*.spec.ts",
 		],
 
 		// list of files / patterns to exclude
@@ -26,7 +26,7 @@ module.exports = function (config) {
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
 			"specs/helpers/setup-helper.ts": ["webpack"],
-			"specs/**/*.spec.ts": ["webpack", "sourcemap"],
+			"specs/integration/**/*.spec.ts": ["webpack", "sourcemap"],
 		},
 
 		webpack: {

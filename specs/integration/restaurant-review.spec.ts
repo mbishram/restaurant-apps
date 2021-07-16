@@ -1,6 +1,6 @@
 import { WebcompHelper } from "@utils/webcomp-helper";
-import { TestFactories } from "./helpers/test-factories";
-import { UtilsHelper } from "./helpers/utils-helper";
+import { TestFactories } from "../helpers/test-factories";
+import { UtilsHelper } from "../helpers/utils-helper";
 
 describe("Review review", () => {
 	describe("when there is no review", () => {

@@ -7,7 +7,8 @@
 		"start-dev": "webpack-dev-server --config webpack.dev.js --open",
 		"build": "webpack --config webpack.prod.js",
 		"deploy": "gh-pages -d dist",
-		"test": "karma start"
+		"test": "karma start",
+		"e2e": "concurrently --kill-others \"webpack-dev-server --config webpack.dev.js --open\" \"playwright test\""
 	},
 	"keywords": [],
 	"author": "your_name <your.email@domain.com>",
@@ -15,6 +16,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.10.5",
 		"@babel/preset-env": "^7.10.4",
+		"@playwright/test": "^1.12.3",
 		"@types/jasmine": "^3.8.1",
 		"@types/jquery": "^3.5.5",
 		"@types/lodash": "^4.14.170",
@@ -42,6 +44,7 @@
 		"karma-sourcemap-loader": "^0.3.8",
 		"karma-webpack": "^5.0.0",
 		"mini-css-extract-plugin": "^1.6.0",
+		"playwright": "^1.12.3",
 		"prettier": "^2.2.1",
 		"sass": "^1.32.12",
 		"sass-loader": "^11.0.1",
@@ -60,6 +63,7 @@
 	"dependencies": {
 		"@fontsource/manrope": "^4.2.2",
 		"bootstrap-icons": "^1.4.1",
+		"concurrently": "^6.2.0",
 		"destyle.css": "^2.0.2",
 		"idb": "^6.1.2",
 		"jquery": "^3.6.0",
