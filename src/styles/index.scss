@@ -4,6 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+	opacity: 0;
 
     main {
         flex-grow: 1;

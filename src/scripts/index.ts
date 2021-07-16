@@ -23,7 +23,7 @@ import "@components/Alert";
 import { SWHelper } from "@utils/sw-helper";
 
 $(window).on("load", () => {
-	$("body").css("display", "flex");
+	$("body").css("opacity", "1");
 	App.renderPage();
 	SWHelper.registerSW();
 });
