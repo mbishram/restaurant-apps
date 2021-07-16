@@ -1,6 +1,7 @@
 {
 	"compileOnSave": true,
 	"compilerOptions": {
+		"lib": ["dom"],
         "baseUrl": "./src",
 		"noImplicitAny": true,
         "module": "es6",

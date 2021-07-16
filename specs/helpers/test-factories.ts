@@ -6,12 +6,14 @@ import { Menu } from "@scripts/entities/menu";
 import { MenuList } from "@components/MenuList";
 import { ReviewList } from "@components/ReviewList";
 import { Review } from "@scripts/entities/review";
+import { CustomAlert } from "@components/Alert";
 
 export class TestFactories {
-	private static createEmptyState = () => {
+	static createEmptyState = () => {
 		document.body.innerHTML = "";
 
 		document.body.appendChild(new Loader());
+		document.body.appendChild(new CustomAlert());
 	}
 
 	static setupFavoriteButton = async (restaurant: Restaurant) => {
