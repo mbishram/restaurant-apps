@@ -23,6 +23,7 @@ import "@components/Alert";
 import { SWHelper } from "@utils/sw-helper";
 
 $(window).on("load", () => {
+	$("body").css("display", "flex");
 	App.renderPage();
 	SWHelper.registerSW();
 });
