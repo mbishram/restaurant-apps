@@ -125,7 +125,7 @@ module.exports = {
 			],
 		}),
 		new MiniCssExtractPlugin({
-			filename: "index.css",
+			filename: "[name].css",
 		}),
 		new WebpackPwaManifest({
 			filename: "manifest.json",

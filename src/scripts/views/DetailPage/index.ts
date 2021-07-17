@@ -12,6 +12,7 @@ import { CustomAlert } from "@components/Alert";
 import { AlertHelper } from "@utils/alert-helper";
 import { jQuery } from "@typings/global";
 import { DBFavoriteData } from "@scripts/data/dbfavorite-data";
+import { CONFIGS } from "@scripts/constants/configs";
 import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
@@ -22,10 +23,16 @@ const template = WebcompHelper.createTemplate(`
 		</div>
 		<div slot="content" class="content">
 			<div class="detail-grid">
-				<img 
-					src="https://via.placeholder.com/1080x720.png?text=Image%20Missing"
-					alt="Gambar tidak ditemukan"
-				/>
+				<picture>
+					<source 
+						media="only screen and (max-width: 768px)" 
+						srcset=""
+					/>
+					<img 
+						src="https://via.placeholder.com/1080x720.png?text=Image%20Missing"
+						alt="Gambar tidak ditemukan"
+					/>
+				</picture>
 			
 				<section aria-label="Deskripsi restoran">
 					<p class="mb-xs"><b>Kategori</b></pc>
@@ -83,6 +90,7 @@ export class DetailPage extends HTMLElement {
 
 	private header!: jQuery
 	private img!: jQuery
+	private sourceImg!: jQuery
 	private kategori!: jQuery
 	private rating!: jQuery
 	private kota!: jQuery
@@ -135,6 +143,7 @@ export class DetailPage extends HTMLElement {
 		this.selector = WebcompHelper.setupSelector(this.shadowRoot || undefined);
 
 		this.header = this.selector("#restaurant-header");
+		this.sourceImg = this.selector("source");
 		this.img = this.selector("img");
 		this.kategori = this.selector("#kategori");
 		this.rating = this.selector("#rating");
@@ -166,7 +175,8 @@ export class DetailPage extends HTMLElement {
 	}
 
 	private setupImg = () => {
-		this.img.attr("src", `https://restaurant-api.dicoding.dev/images/medium/${this.detailData.pictureId}`);
+		this.sourceImg.attr("srcset", `${CONFIGS.IMG_BASE_URL_SMALL}${this.detailData.pictureId}`);
+		this.img.attr("src", `${CONFIGS.IMG_BASE_URL_MEDIUM}${this.detailData.pictureId}`);
 		this.img.attr("alt", this.detailData.name);
 	}
 

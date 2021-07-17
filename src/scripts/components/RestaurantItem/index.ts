@@ -82,7 +82,7 @@ export class RestaurantItem extends HTMLElement {
 	}
 
 	private setupElement = () => {
-		if (this.restaurant.pictureId) this.img.attr("src", `${CONFIGS.IMG_BASE_URL}${this.restaurant.pictureId}`);
+		if (this.restaurant.pictureId) this.img.attr("src", `${CONFIGS.IMG_BASE_URL_SMALL}${this.restaurant.pictureId}`);
 		this.img.attr("alt", this.restaurant.name);
 
 		this.section.attr("aria-label", `deskripsi ${this.restaurant.name}`);

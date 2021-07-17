@@ -9,11 +9,17 @@
         align-items: flex-end;
 
         height: 30rem;
-        background-image: $img-darken,
-        url("../../../public/images/heros/hero-image_2.jpg");
         background-size: cover;
         background-position: center;
         border-radius: 0 0 $border-rad $border-rad;
+
+		// Responsive image
+		background-image: $img-darken,
+		url("../../../public/images/heros/hero-image_2-small.jpg");
+		@media only screen and (min-width: $screen-md) {
+			background-image: $img-darken,
+			url("../../../public/images/heros/hero-image_2-large.jpg");
+		}
 
         .container {
             padding: 0 1rem;
@@ -56,13 +62,19 @@
         align-items: flex-end;
 
         height: 24rem;
-        background-image: $img-darken,
-        url("../../../public/images/heros/hero-image_1.jpg");
         background-size: cover;
         background-position: top center;
         border-radius: $border-rad $border-rad 0 0;
 
-        .container {
+		// Responsive image
+		background-image: $img-darken,
+		url("../../../public/images/heros/hero-image_1-small.jpg");
+		@media only screen and (min-width: $screen-md) {
+			background-image: $img-darken,
+			url("../../../public/images/heros/hero-image_1-large.jpg");
+		}
+
+		.container {
             width: 100%;
             padding: 0 1rem;
 
