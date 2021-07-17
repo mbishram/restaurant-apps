@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const { GenerateSW } = require("workbox-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -55,7 +56,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(png|jpe?g|gif)$/i,
+				test: /\.(png|jpe?g|gif|svg)$/i,
 				use: [
 					{
 						loader: "file-loader",
@@ -65,10 +66,24 @@ module.exports = {
 							esModule: false,
 						},
 					},
+					{
+						loader: ImageMinimizerPlugin.loader,
+						options: {
+							severityError: "warning", // Ignore errors on corrupted images
+							minimizerOptions: {
+								plugins: [
+									["imagemin-mozjpeg", { quality: 75 }],
+									["imagemin-gifsicle"],
+									["imagemin-pngquant"],
+									["imagemin-svgo"],
+								],
+							},
+						},
+					},
 				],
 			},
 			{
-				test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+				test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
 				use: [
 					{
 						loader: "file-loader",
