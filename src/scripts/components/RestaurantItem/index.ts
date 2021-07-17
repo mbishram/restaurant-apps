@@ -11,6 +11,7 @@ const template = WebcompHelper.createTemplate(`
 			class="restaurant-image" 
 			src=""
 			alt="Gambar tidak ditemukan"
+			loading="lazy"
 		>
 		<section class="card">
 			<h3 class="text-md" id="heading">
