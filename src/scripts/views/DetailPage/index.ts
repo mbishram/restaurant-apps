@@ -29,7 +29,7 @@ const template = WebcompHelper.createTemplate(`
 						srcset=""
 					/>
 					<img 
-						src="https://via.placeholder.com/1080x720.png?text=Image%20Missing"
+						src=""
 						alt="Gambar tidak ditemukan"
 					/>
 				</picture>
@@ -109,12 +109,13 @@ export class DetailPage extends HTMLElement {
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
 
+		await this.render();
 		const data =
 			await FetchData.restaurantDetail(RouterHelper.getLink.id);
 		this.detailData = new Restaurant(data);
 		const favoriteData = await DBFavoriteData.getRestaurant(this.detailData.id);
 		this.favoriteData = new Restaurant(favoriteData);
-		await this.render();
+		await this.rerender();
 		WebcompHelper.stopLoading();
 	}
 
@@ -131,12 +132,14 @@ export class DetailPage extends HTMLElement {
 
 		this.setupProperties();
 		this.setupEventListener();
-		this.setupHeader();
-		this.setupImg();
-		this.setupDescription();
-		this.initMenuList();
-		this.initReviewList();
-		await this.initFavoriteButton();
+		if (this.detailData.pictureId) {
+			this.setupHeader();
+			this.setupImg();
+			this.setupDescription();
+			this.initMenuList();
+			this.initReviewList();
+			await this.initFavoriteButton();
+		}
 	}
 
 	private setupProperties = () => {

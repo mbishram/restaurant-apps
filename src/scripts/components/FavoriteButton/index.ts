@@ -96,12 +96,10 @@ export class FavoriteButton extends HTMLElement {
 	}
 
 	rerender = async () => {
-		WebcompHelper.startLoading();
 		while (this.shadowRoot?.firstChild) {
 			this.shadowRoot?.firstChild.remove();
 		}
 		await this.render();
-		WebcompHelper.stopLoading();
 	}
 
 	setRestaurantData = async (data: Restaurant) => {

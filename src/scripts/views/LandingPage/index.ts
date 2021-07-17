@@ -62,8 +62,9 @@ export class LandingPage extends HTMLElement {
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
 
-		this.restaurantData = await FetchData.restaurantList();
 		this.render();
+		this.restaurantData = await FetchData.restaurantList();
+		this.rerender();
 		WebcompHelper.stopLoading();
 	}
 

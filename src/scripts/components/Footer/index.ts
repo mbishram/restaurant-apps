@@ -4,7 +4,7 @@ import style from "./style.webcomp.scss";
 
 const template = WebcompHelper.createTemplate(`
 	<div class="container">
-		 <p class="text-gray-3">
+		 <p class="text-gray-1">
 			   &copy; 2021 - YELPing you find a restaurant.
 		 </p>
 	</div>

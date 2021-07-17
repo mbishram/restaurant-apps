@@ -9,7 +9,7 @@ const template = WebcompHelper.createTemplate(`
 	<article aria-labelledby="heading">
 		<img 
 			class="restaurant-image" 
-			src="https://via.placeholder.com/1080x720.png?text=Image%20Missing"
+			src=""
 			alt="Gambar tidak ditemukan"
 		>
 		<section class="card">
