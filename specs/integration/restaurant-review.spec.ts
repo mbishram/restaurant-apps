@@ -2,7 +2,7 @@ import { WebcompHelper } from "@utils/webcomp-helper";
 import { TestFactories } from "../helpers/test-factories";
 import { UtilsHelper } from "../helpers/utils-helper";
 
-describe("Review review", () => {
+describe("Review", () => {
 	describe("when there is no review", () => {
 		it("should show indicator", () => {
 			TestFactories.setupReviewList([]);

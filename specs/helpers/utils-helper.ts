@@ -1,5 +1,3 @@
-import "tsconfig-paths/register";
-
 export class UtilsHelper {
 	// Query a web component and return it's shadow root
 	static getRootWebComponent = (
