@@ -63,6 +63,8 @@ export class LandingPage extends HTMLElement {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
 
 		this.render();
+		this.restaurantList.setIsLoading = true;
+
 		this.restaurantData = await FetchData.restaurantList();
 		this.rerender();
 		WebcompHelper.stopLoading();

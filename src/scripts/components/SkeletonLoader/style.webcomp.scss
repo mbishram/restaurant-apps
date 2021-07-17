@@ -1,0 +1,6 @@
+@import "../../../styles/basic-import";
+
+:host {
+	border-radius: $border-rad-sm;
+	background-color: $color-gray-4;
+}

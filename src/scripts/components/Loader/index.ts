@@ -27,10 +27,16 @@ export class Loader extends HTMLElement {
 
 	showLoader = () => {
 		$(this).addClass("show");
+		$(this).attr("role", "alert");
+		$(this).attr("aria-busy", "true");
+		$(this).attr("aria-label", "Loading");
 	}
 
 	hideLoader = () => {
 		$(this).removeClass("show");
+		$(this).removeAttr("role");
+		$(this).removeAttr("aria-busy");
+		$(this).removeAttr("aria-label");
 	}
 }
 

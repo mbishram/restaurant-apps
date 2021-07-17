@@ -13,8 +13,7 @@ const template = WebcompHelper.createTemplate(`
 `);
 
 export class FavoritePage extends HTMLElement {
-	private selector: Function = () => {
-	}
+	private selector: Function = () => {}
 
 	private restaurantData: Array<object> = []
 
@@ -25,6 +24,8 @@ export class FavoritePage extends HTMLElement {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
 
 		this.render();
+		this.restaurantList.setIsLoading = true;
+
 		this.restaurantData = await DBFavoriteData.getAllRestaurant();
 		this.rerender();
 		WebcompHelper.stopLoading();

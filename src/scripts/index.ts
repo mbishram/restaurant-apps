@@ -21,6 +21,7 @@ import "@components/ReviewList";
 import "@components/FavoriteButton";
 import "@components/Loader";
 import "@components/Alert";
+import "@components/SkeletonLoader";
 
 $(window).on("load", () => {
 	$("body").css("opacity", "1");
