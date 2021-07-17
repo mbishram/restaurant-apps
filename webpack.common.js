@@ -7,13 +7,17 @@ const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const { GenerateSW } = require("workbox-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-	entry: path.resolve(__dirname, "./src/scripts/index.ts"),
+	entry: {
+		index: path.resolve(__dirname, "./src/scripts/index.ts"),
+	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
-		filename: "bundle.js",
+		filename: "[name].bundle.js",
 	},
 	module: {
 		rules: [
@@ -96,6 +100,15 @@ module.exports = {
 			},
 		],
 	},
+	optimization: {
+		splitChunks: {
+			chunks: "all",
+			minSize: 20000,
+			maxSize: 70000,
+			minChunks: 1,
+		},
+		minimizer: [new UglifyJsPlugin()],
+	},
 	resolve: {
 		extensions: [".ts", ".js", ".scss", ".sass", ".css"],
 		// To fix webpack doesn't recognize path in tsconfig
@@ -177,6 +190,7 @@ module.exports = {
 				},
 			],
 		}),
+		new BundleAnalyzerPlugin(),
 		new CleanWebpackPlugin(),
 	],
 };

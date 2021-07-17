@@ -1,5 +1,5 @@
 import $ from "jquery";
-import _ from "lodash";
+import values from "lodash.values";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Navigation } from "@components/Navigation";
 import { jQuery } from "@typings/global";
@@ -60,13 +60,13 @@ export class NavigationLink extends HTMLElement {
 
 	private addAttributes = () => {
 		const attributes = $(this).prop("attributes");
-		_.values(attributes).forEach((attribute: Attr) => {
+		values(attributes).forEach((attribute: Attr) => {
 			if (!this.isAttributeExist(attribute)) this.attributeLists.push(attribute);
 		});
 	}
 
 	private cloneAttributes = () => {
-		_.values(this.attributeLists).forEach((attribute: Attr) => {
+		values(this.attributeLists).forEach((attribute: Attr) => {
 			if (!(attribute.name === "role" || attribute.name === "id")) {
 				this.link.attr(attribute.name, attribute.value);
 				$(this).removeAttr(attribute.name);
@@ -97,7 +97,7 @@ export class NavigationLink extends HTMLElement {
 	}
 
 	addSelected = () => {
-		const linkAttributes = _.values(this.link.addClass("selected").prop("attributes"));
+		const linkAttributes = values(this.link.addClass("selected").prop("attributes"));
 		const classAttr = WebcompHelper.getAttribute("class", linkAttributes);
 		// Adding class attribute into attributeLists so it doesn't get lost when rerender
 		if (classAttr && !this.isAttributeExist(classAttr)) this.attributeLists.push(classAttr);
@@ -106,7 +106,7 @@ export class NavigationLink extends HTMLElement {
 	}
 
 	removeSelected = () => {
-		const classAttr = WebcompHelper.getAttribute("class", _.values(this.link.prop("attributes")));
+		const classAttr = WebcompHelper.getAttribute("class", values(this.link.prop("attributes")));
 		// Removing class attribute from attributeLists so it will not be rerender
 		if (classAttr) {
 			this.attributeLists.forEach((attribute: Attr, index: number) => {

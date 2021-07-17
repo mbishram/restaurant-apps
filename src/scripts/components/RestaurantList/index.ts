@@ -1,4 +1,4 @@
-import _ from "lodash";
+import isEmpty from "lodash.isempty";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { RestaurantItem } from "@components/RestaurantItem";
 import { Restaurant } from "@scripts/entities/restaurant";
@@ -29,7 +29,7 @@ export class RestaurantList extends HTMLElement {
 	}
 
 	private renderContent = () => {
-		if (!_.isEmpty(this.restaurantData)) {
+		if (!isEmpty(this.restaurantData)) {
 			this.restaurantData.forEach((restaurant) => {
 				const restaurantItem = new RestaurantItem();
 				this.shadowRoot?.appendChild(restaurantItem);

@@ -1,5 +1,5 @@
 import $ from "jquery";
-import _ from "lodash";
+import isEmpty from "lodash.isempty";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { MenuList } from "@components/MenuList";
 import { ReviewList } from "@components/ReviewList";
@@ -206,7 +206,7 @@ export class DetailPage extends HTMLElement {
 
 	private formatKategori = () => {
 		const dataKategori = WebcompHelper.convertKategoriData(this.detailData.categories);
-		if (_.isEmpty(dataKategori)) {
+		if (isEmpty(dataKategori)) {
 			return "Kategori Kosong";
 		}
 		return dataKategori.map((kategori) =>
@@ -233,7 +233,7 @@ export class DetailPage extends HTMLElement {
 			);
 		WebcompHelper.stopLoading();
 
-		if (_.isEmpty(reviewData)) {
+		if (isEmpty(reviewData)) {
 			return;
 		}
 

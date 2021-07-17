@@ -1,4 +1,4 @@
-import _ from "lodash";
+import isEmpty from "lodash.isempty";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Review } from "@scripts/entities/review";
 import { ReviewItem } from "@components/ReviewItem";
@@ -29,7 +29,7 @@ export class ReviewList extends HTMLElement {
 	}
 
 	private renderContent = () => {
-		if (!_.isEmpty(this.reviewData)) {
+		if (!isEmpty(this.reviewData)) {
 			this.reviewData.forEach((review: Review) => {
 				const reviewItem = new ReviewItem();
 				this.shadowRoot?.appendChild(reviewItem);

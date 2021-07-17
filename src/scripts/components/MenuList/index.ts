@@ -1,4 +1,4 @@
-import _ from "lodash";
+import isEmpty from "lodash.isempty";
 import { WebcompHelper } from "@utils/webcomp-helper";
 import { Menu } from "@scripts/entities/menu";
 import { MenuItem } from "@components/MenuItem";
@@ -29,7 +29,7 @@ export class MenuList extends HTMLElement {
 	}
 
 	private renderContent = () => {
-		if (!_.isEmpty(this.menuData)) {
+		if (!isEmpty(this.menuData)) {
 			this.menuData.forEach((menu: Menu) => {
 				const menuItem = new MenuItem();
 				this.shadowRoot?.appendChild(menuItem);

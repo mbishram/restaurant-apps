@@ -2,7 +2,6 @@ import { Kategori } from "@scripts/entities/kategori";
 import { Menu } from "@scripts/entities/menu";
 import { Review } from "@scripts/entities/review";
 import { WebcompHelper } from "@utils/webcomp-helper";
-import moment from "moment";
 
 export class Restaurant {
 	id: string;
@@ -19,7 +18,7 @@ export class Restaurant {
 	constructor(
 		restaurant?: Restaurant,
 	) {
-		this.id = restaurant?.id || moment().toISOString();
+		this.id = restaurant?.id || new Date().toISOString();
 		this.name = WebcompHelper.convertTitleCase(restaurant?.name || "Restoran Tidak Ditemukan");
 		this.description = restaurant?.description || "Deskripsi restoran tidak ditemukan.";
 		this.city = restaurant?.city || "Kota";

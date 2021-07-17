@@ -8,6 +8,7 @@ import $ from "jquery";
 import "@styles/index.scss";
 
 import { App } from "@views/App";
+import { SWHelper } from "@utils/sw-helper";
 
 import "@components/Navigation";
 import "@components/NavigationLink";
@@ -20,7 +21,6 @@ import "@components/ReviewList";
 import "@components/FavoriteButton";
 import "@components/Loader";
 import "@components/Alert";
-import { SWHelper } from "@utils/sw-helper";
 
 $(window).on("load", () => {
 	$("body").css("opacity", "1");
