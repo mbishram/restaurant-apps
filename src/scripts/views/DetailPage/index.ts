@@ -82,8 +82,66 @@ const template = WebcompHelper.createTemplate(`
 	</page-section>
 `);
 
+const skeletonLoaderTemplate = WebcompHelper.createTemplate(`
+	<page-section id="restaurant-list" aria-labelledby="restaurant-header">
+		<div slot="header">
+			<skeleton-loader width="15rem" height="2.75rem"></skeleton-loader>
+		</div>
+		<div slot="content" class="content">
+			<div class="detail-grid">
+				<div class="img">
+					<skeleton-loader width="100%" height="100%"></skeleton-loader>
+				</div>
+			
+				<section aria-label="Deskripsi restoran">
+					<skeleton-loader class="mb-xs" width="8rem"></skeleton-loader>
+					<skeleton-loader width="80%"></skeleton-loader>
+				 
+					<skeleton-loader class="mt-md mb-xs" width="8rem"></skeleton-loader>
+					<skeleton-loader width="85%"></skeleton-loader>
+					 
+					<skeleton-loader class="mt-md mb-xs" width="8rem"></skeleton-loader>
+					<skeleton-loader width="90%"></skeleton-loader>
+					 
+					<skeleton-loader class="mt-md mb-xs" width="8rem"></skeleton-loader>
+					<skeleton-loader width="100%" height="30rem"></skeleton-loader>
+				</section>
+			</div>
+			
+			<section aria-label="Menu restoran">
+			   	<skeleton-loader class="mb-xs" width="8rem"></skeleton-loader>
+			   	<div class="menu">
+					<skeleton-loader height="3.5rem"></skeleton-loader>
+					<skeleton-loader height="3.5rem"></skeleton-loader>
+					<skeleton-loader height="3.5rem"></skeleton-loader>
+				</div>
+				
+			   	<skeleton-loader class="mt-md mb-xs" width="8rem"></skeleton-loader>
+			   	<div class="menu">
+					<skeleton-loader height="3.5rem"></skeleton-loader>
+					<skeleton-loader height="3.5rem"></skeleton-loader>
+					<skeleton-loader height="3.5rem"></skeleton-loader>
+				</div>
+			</section>
+			
+			<section aria-label="Ulasan restoran">
+			   	<skeleton-loader class="mb-xs" width="8rem"></skeleton-loader>
+				<skeleton-loader class="mb-xs" height="3rem"></skeleton-loader>
+				<skeleton-loader class="mb-xs" height="6rem"></skeleton-loader>
+				<skeleton-loader class="mb-md" height="2.5rem" width="10rem"></skeleton-loader>
+				<div class="review">
+					<skeleton-loader height="7rem"></skeleton-loader>
+					<skeleton-loader height="7rem"></skeleton-loader>
+				</div>
+			</section>
+		</div>
+	</page-section>
+`);
+
 export class DetailPage extends HTMLElement {
 	private selector: Function = () => {}
+
+	private isLoading: boolean = false
 
 	private detailData: Restaurant = new Restaurant()
 	private favoriteData: Restaurant = new Restaurant()
@@ -102,12 +160,14 @@ export class DetailPage extends HTMLElement {
 	private reviewFormName!: jQuery
 	private reviewFormDesc!: jQuery
 	private reviewList: ReviewList = new ReviewList()
-	private favoriteButton: FavoriteButton = new FavoriteButton()
+	private favoriteButton?: FavoriteButton
 	private alert: CustomAlert = new CustomAlert()
 
 	// noinspection JSUnusedLocalSymbols
 	private async connectedCallback() {
 		if (this.shadowRoot === null) this.attachShadow({ mode: "open" });
+
+		this.isLoading = true;
 
 		await this.render();
 		const data =
@@ -115,6 +175,8 @@ export class DetailPage extends HTMLElement {
 		this.detailData = new Restaurant(data);
 		const favoriteData = await DBFavoriteData.getRestaurant(this.detailData.id);
 		this.favoriteData = new Restaurant(favoriteData);
+
+		this.isLoading = false;
 		await this.rerender();
 		WebcompHelper.stopLoading();
 	}
@@ -126,10 +188,16 @@ export class DetailPage extends HTMLElement {
 
 	private render = async () => {
 		this.shadowRoot?.appendChild(WebcompHelper.createStyle(style));
-		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		document.title =
 			WebcompHelper.getDocumentTitleFormatted(this.detailData.name);
 
+		if (this.isLoading) {
+			this.shadowRoot?.appendChild(skeletonLoaderTemplate.content.cloneNode(true));
+
+			return;
+		}
+
+		this.shadowRoot?.appendChild(template.content.cloneNode(true));
 		this.setupProperties();
 		this.setupEventListener();
 		if (this.detailData.pictureId) {
@@ -204,7 +272,7 @@ export class DetailPage extends HTMLElement {
 	}
 
 	private initFavoriteButton = async () => {
-		await this.favoriteButton.setRestaurantData(this.detailData);
+		await this.favoriteButton?.setRestaurantData(this.detailData);
 	}
 
 	private formatKategori = () => {

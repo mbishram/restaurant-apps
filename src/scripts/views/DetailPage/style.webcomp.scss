@@ -41,4 +41,30 @@
             }
         }
     }
+
+	.img{
+		height: 17rem;
+
+		@media only screen and (min-width: $screen-md) {
+			height: 100%;
+		}
+	}
+
+	.menu {
+		display: grid;
+		gap: $spacing-xs;
+
+		@media only screen and (min-width: $screen-md) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media only screen and (min-width: $screen-lg) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.review {
+		display: grid;
+		gap: $spacing-xs;
+	}
 }
